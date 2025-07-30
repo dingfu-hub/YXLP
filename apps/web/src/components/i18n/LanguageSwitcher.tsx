@@ -39,11 +39,27 @@ export default function LanguageSwitcher({
     // 设置Cookie以持久化语言偏好
     document.cookie = `preferred-language=${langCode}; max-age=${60 * 60 * 24 * 365}; path=/; samesite=lax`
 
-    // 设置语言并刷新页面以应用新语言
+    // 设置语言
     setLanguage(langCode)
 
-    // 刷新页面以应用新的语言设置
-    window.location.reload()
+    // 构建新的URL路径
+    const currentPath = pathname
+    let newPath = currentPath
+
+    // 移除现有的语言前缀（如果有）
+    const pathSegments = currentPath.split('/').filter(Boolean)
+    const supportedLocales = ['zh', 'en', 'ja', 'ko', 'es', 'fr', 'de', 'it', 'pt', 'ru']
+
+    if (pathSegments.length > 0 && supportedLocales.includes(pathSegments[0])) {
+      // 移除第一个语言段
+      newPath = '/' + pathSegments.slice(1).join('/')
+    }
+
+    // 添加新的语言前缀
+    const targetPath = `/${langCode}${newPath === '/' ? '' : newPath}`
+
+    // 跳转到新的语言路径
+    router.push(targetPath)
 
     setIsOpen(false)
   }

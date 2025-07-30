@@ -1,9 +1,9 @@
-// const { i18n } = require('./next-i18next.config.js')
+const { i18n } = require('./next-i18next.config.js')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 国际化配置 - 暂时禁用
-  // i18n,
+  // 国际化配置
+  i18n,
 
   // 实验性功能
   experimental: {
