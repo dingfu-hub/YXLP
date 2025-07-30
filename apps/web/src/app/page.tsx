@@ -3,9 +3,13 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ChevronRightIcon, PlayIcon } from '@heroicons/react/24/outline'
+import LanguageSwitcher from '@/components/i18n/LanguageSwitcher'
+import { useTranslation } from '@/hooks/useTranslation'
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const { t } = useTranslation()
+  const { t } = useTranslation()
 
   const heroSlides = [
     {
@@ -62,6 +66,7 @@ export default function HomePage() {
             </div>
 
             <div className="flex items-center space-x-4">
+              <LanguageSwitcher variant="compact" showFlag={true} showNativeName={false} />
               <Link href="/login" className="text-gray-600 hover:text-gray-900 transition-colors">登录</Link>
               <Link href="/register" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                 免费注册

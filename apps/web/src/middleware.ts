@@ -98,63 +98,21 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const currentLocale = getLocaleFromPath(pathname)
+  // 对于现有路由，只设置语言Cookie，不重定向
   const cookieLanguage = getLanguageFromCookie(request)
   const browserLanguage = detectLanguageFromHeader(request.headers.get('accept-language'))
 
-  // 情况1: 路径已包含有效的语言代码
-  if (currentLocale) {
-    // 如果用户有Cookie偏好且与当前路径语言不同，重定向到偏好语言
-    if (cookieLanguage && cookieLanguage !== currentLocale) {
-      const redirectUrl = buildLocalizedUrl(request, cookieLanguage, pathname)
-      const response = NextResponse.redirect(redirectUrl)
-      
-      // 更新Cookie过期时间
-      response.cookies.set('preferred-language', cookieLanguage, {
-        maxAge: 60 * 60 * 24 * 365, // 1年
-        httpOnly: false,
-        sameSite: 'lax'
-      })
-      
-      return response
-    }
-    
-    // 路径语言有效，继续处理
-    const response = NextResponse.next()
-    
-    // 设置语言Cookie（如果还没有的话）
-    if (!cookieLanguage) {
-      response.cookies.set('preferred-language', currentLocale, {
-        maxAge: 60 * 60 * 24 * 365, // 1年
-        httpOnly: false,
-        sameSite: 'lax'
-      })
-    }
-    
-    return response
+  const response = NextResponse.next()
+
+  // 如果没有语言Cookie，设置默认语言
+  if (!cookieLanguage) {
+    const targetLanguage = browserLanguage
+    response.cookies.set('preferred-language', targetLanguage, {
+      maxAge: 60 * 60 * 24 * 365, // 1年
+      httpOnly: false,
+      sameSite: 'lax'
+    })
   }
-
-  // 情况2: 路径不包含语言代码，需要重定向
-  let targetLanguage: string
-
-  if (cookieLanguage) {
-    // 优先使用Cookie中保存的语言偏好
-    targetLanguage = cookieLanguage
-  } else {
-    // 使用浏览器检测的语言
-    targetLanguage = browserLanguage
-  }
-
-  // 重定向到带语言前缀的URL
-  const redirectUrl = buildLocalizedUrl(request, targetLanguage)
-  const response = NextResponse.redirect(redirectUrl)
-
-  // 设置语言Cookie
-  response.cookies.set('preferred-language', targetLanguage, {
-    maxAge: 60 * 60 * 24 * 365, // 1年
-    httpOnly: false,
-    sameSite: 'lax'
-  })
 
   return response
 }
@@ -169,7 +127,8 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - admin routes (管理后台保持中文)
+     * - 静态资源
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|admin).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|admin|.*\\.).*)',
   ],
 }

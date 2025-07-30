@@ -36,23 +36,15 @@ export default function LanguageSwitcher({
   }, [])
 
   const handleLanguageChange = (langCode: string) => {
-    // 构建新的URL路径
-    const currentLocale = pathname.split('/')[1]
-    let newPath = pathname
-
-    if (currentLocale && availableLanguages.some(lang => lang.code === currentLocale)) {
-      // 替换现有的语言代码
-      newPath = pathname.replace(`/${currentLocale}`, `/${langCode}`)
-    } else {
-      // 添加语言代码前缀
-      newPath = `/${langCode}${pathname}`
-    }
-
     // 设置Cookie以持久化语言偏好
     document.cookie = `preferred-language=${langCode}; max-age=${60 * 60 * 24 * 365}; path=/; samesite=lax`
 
-    // 跳转到新的语言路径
-    router.push(newPath)
+    // 设置语言并刷新页面以应用新语言
+    setLanguage(langCode)
+
+    // 刷新页面以应用新的语言设置
+    window.location.reload()
+
     setIsOpen(false)
   }
 
