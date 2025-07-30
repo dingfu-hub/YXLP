@@ -10,7 +10,6 @@ import { ProductImage, PlaceholderImage } from '@/components/ui/ImageWithFallbac
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const { t } = useTranslation()
-  const { t } = useTranslation()
 
   const heroSlides = [
     {
