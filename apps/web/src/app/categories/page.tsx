@@ -10,14 +10,16 @@ export default function CategoriesPage() {
 
   // 计算实际的产品数量
   const getCategoryProductCount = (categoryId: string) => {
+    if (!products || !Array.isArray(products)) return 0
     return products.filter(p => categoryId === 'all' || p.category === categoryId).length
   }
 
   // 获取分类的热门产品
   const getCategoryHotProducts = (categoryId: string, limit = 3) => {
+    if (!products || !Array.isArray(products)) return []
     return products
       .filter(p => categoryId === 'all' || p.category === categoryId)
-      .sort((a, b) => b.sales - a.sales)
+      .sort((a, b) => (b.salesCount || 0) - (a.salesCount || 0))
       .slice(0, limit)
   }
 
@@ -39,21 +41,15 @@ export default function CategoriesPage() {
   ]
 
   // 筛选后的分类
-  const filteredCategories = productCategories.filter(category => {
+  const filteredCategories = (productCategories || []).filter(category => {
     if (category.id === 'all') return false // 不显示"全部商品"分类
 
+    if (!products || !Array.isArray(products)) return true // 如果没有产品数据，显示所有分类
     const categoryProducts = products.filter(p => p.category === category.id)
 
-    const seasonMatch = selectedSeason === 'all' || categoryProducts.some(p =>
-      selectedSeason === 'spring' && ['春', '春季'].some(s => p.season.includes(s)) ||
-      selectedSeason === 'summer' && ['夏', '夏季'].some(s => p.season.includes(s)) ||
-      selectedSeason === 'autumn' && ['秋', '秋季'].some(s => p.season.includes(s)) ||
-      selectedSeason === 'winter' && ['冬', '冬季'].some(s => p.season.includes(s))
-    )
-
-    const genderMatch = selectedGender === 'all' || categoryProducts.some(p =>
-      selectedGender === p.gender
-    )
+    // 简化筛选逻辑，因为产品数据中暂时没有season和gender字段
+    const seasonMatch = selectedSeason === 'all' || categoryProducts.length > 0
+    const genderMatch = selectedGender === 'all' || categoryProducts.length > 0
 
     return seasonMatch && genderMatch
   })
@@ -201,12 +197,12 @@ export default function CategoriesPage() {
                         >
                           <div className="aspect-square bg-gray-100 rounded overflow-hidden">
                             <img
-                              src={product.image}
+                              src={product.featuredImage || product.images?.[0] || '/api/placeholder/100/100'}
                               alt={product.name}
                               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                               onError={(e) => {
                                 const target = e.target as HTMLImageElement
-                                target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00MCA0MEg2MFY2MEg0MFY0MFoiIGZpbGw9IiM5Q0EzQUYiLz4KPHN2Zz4K'
+                                target.src = '/api/placeholder/100/100?text=' + encodeURIComponent(product.name)
                               }}
                             />
                           </div>

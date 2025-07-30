@@ -324,6 +324,6 @@ export function getProductStats(): ProductStats {
   }
 }
 
-// 导出所有商品数据（用于调试）
+// 导出所有商品数据
 export const allProducts = products
-export { productCategories }
+export { products, productCategories }
