@@ -1,9 +1,7 @@
-const { i18n } = require('./next-i18next.config.js')
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // 国际化配置
-  i18n,
+  // 国际化配置 - 使用App Router手动处理
+  // i18n,
 
   // 实验性功能
   experimental: {

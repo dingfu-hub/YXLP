@@ -70,11 +70,9 @@ export default function LocaleLayout({ children, params }: LocaleLayoutProps) {
   }
 
   return (
-    <html lang={locale}>
-      <body>
-        {children}
-      </body>
-    </html>
+    <div data-locale={locale}>
+      {children}
+    </div>
   )
 }
 
