@@ -1,0 +1,186 @@
+{
+  "summary": {
+    "total": 25,
+    "passed": 22,
+    "failed": 3,
+    "passRate": "88.00%",
+    "totalTime": "2626ms"
+  },
+  "details": [
+    {
+      "testName": "访问首页",
+      "passed": true,
+      "message": "首页无法访问",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:36.266Z"
+    },
+    {
+      "testName": "访问新闻列表页",
+      "passed": true,
+      "message": "新闻列表页无法访问",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:36.506Z"
+    },
+    {
+      "testName": "新闻列表页加载时间 < 3000ms",
+      "passed": true,
+      "message": "加载时间: 30ms",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:36.536Z"
+    },
+    {
+      "testName": "访问新闻详情页",
+      "passed": true,
+      "message": "新闻详情页无法访问",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:36.943Z"
+    },
+    {
+      "testName": "新闻详情页包含源文章链接",
+      "passed": false,
+      "message": "未找到源文章链接按钮",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:36.943Z"
+    },
+    {
+      "testName": "desktop设备兼容性",
+      "passed": true,
+      "message": "设备兼容性问题",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:37.122Z"
+    },
+    {
+      "testName": "tablet设备兼容性",
+      "passed": true,
+      "message": "设备兼容性问题",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:37.122Z"
+    },
+    {
+      "testName": "mobile设备兼容性",
+      "passed": true,
+      "message": "设备兼容性问题",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:37.122Z"
+    },
+    {
+      "testName": "访问管理员登录页",
+      "passed": true,
+      "message": "登录页无法访问",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:37.551Z"
+    },
+    {
+      "testName": "访问新闻管理页",
+      "passed": true,
+      "message": "状态码: 200",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:37.635Z"
+    },
+    {
+      "testName": "新闻管理页包含语言切换功能",
+      "passed": false,
+      "message": "未找到语言切换组件",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:37.636Z"
+    },
+    {
+      "testName": "访问新闻采集页",
+      "passed": true,
+      "message": "状态码: 200",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:37.978Z"
+    },
+    {
+      "testName": "采集页包含进度显示",
+      "passed": false,
+      "message": "未找到进度显示组件",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:37.978Z"
+    },
+    {
+      "testName": "ZH语言页面访问",
+      "passed": true,
+      "message": "zh语言页面无法访问",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.020Z"
+    },
+    {
+      "testName": "EN语言页面访问",
+      "passed": true,
+      "message": "en语言页面无法访问",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.080Z"
+    },
+    {
+      "testName": "JA语言页面访问",
+      "passed": true,
+      "message": "ja语言页面无法访问",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.166Z"
+    },
+    {
+      "testName": "KO语言页面访问",
+      "passed": true,
+      "message": "ko语言页面无法访问",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.235Z"
+    },
+    {
+      "testName": "搜索功能 - \"服装\"",
+      "passed": true,
+      "message": "搜索\"服装\"失败",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.292Z"
+    },
+    {
+      "testName": "搜索功能 - \"市场\"",
+      "passed": true,
+      "message": "搜索\"市场\"失败",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.339Z"
+    },
+    {
+      "testName": "搜索功能 - \"fashion\"",
+      "passed": true,
+      "message": "搜索\"fashion\"失败",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.395Z"
+    },
+    {
+      "testName": "搜索功能 - \"business\"",
+      "passed": true,
+      "message": "搜索\"business\"失败",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.441Z"
+    },
+    {
+      "testName": "首页加载时间 < 2000ms",
+      "passed": true,
+      "message": "实际加载时间: 57ms",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.498Z"
+    },
+    {
+      "testName": "新闻列表加载时间 < 3000ms",
+      "passed": true,
+      "message": "实际加载时间: 53ms",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.551Z"
+    },
+    {
+      "testName": "新闻详情加载时间 < 2000ms",
+      "passed": true,
+      "message": "实际加载时间: 134ms",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.685Z"
+    },
+    {
+      "testName": "管理员登录加载时间 < 2000ms",
+      "passed": true,
+      "message": "实际加载时间: 86ms",
+      "screenshot": null,
+      "timestamp": "2025-07-27T14:46:38.771Z"
+    }
+  ]
+}

@@ -1,0 +1,992 @@
+{
+  "timestamp": "2025-07-27T14:46:41.683Z",
+  "testSuite": {
+    "total": 4,
+    "passed": 2,
+    "failed": 2,
+    "passRate": "50.00%",
+    "totalTime": "6701ms"
+  },
+  "testCases": {
+    "total": 101,
+    "passed": 95,
+    "failed": 6,
+    "passRate": "94.06%"
+  },
+  "detailedResults": {
+    "API接口验证": {
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "passRate": "100.00%",
+      "duration": 917
+    },
+    "端到端用户流程测试": {
+      "total": 25,
+      "passed": 22,
+      "failed": 3,
+      "passRate": "88.00%",
+      "duration": 2719
+    },
+    "数据质量验证": {
+      "total": 32,
+      "passed": 29,
+      "failed": 3,
+      "passRate": "90.63%",
+      "duration": 589
+    },
+    "安全性与性能测试": {
+      "total": 36,
+      "passed": 36,
+      "failed": 0,
+      "passRate": "100.00%",
+      "duration": 2295
+    }
+  },
+  "results": [
+    {
+      "name": "API接口验证",
+      "script": "../../tests/api/api-validation.js",
+      "success": true,
+      "exitCode": 0,
+      "duration": 917,
+      "stdout": "🚀 开始API接口验证...\n📍 测试服务器: http://localhost:3002\n⚠️ 管理员认证失败，将跳过需要认证的测试\n\n📰 测试公共新闻API...\n✅ 获取公共新闻列表 (172ms)\n✅ 新闻列表分页功能 (21ms)\n✅ 新闻分类过滤 (19ms)\n✅ 公共API响应时间 < 1000ms (172ms)\n✅ 获取新闻详情 (215ms)\n✅ 新闻详情包含源文章信息 (0ms)\n\n⚠️ 跳过管理员API测试（无认证token）\n\n⚠️ 跳过采集API测试（无认证token）\n\n🔒 测试安全性...\n✅ SQL注入防护 (29ms)\n✅ XSS防护 (22ms)\n\n📊 测试报告\nNaN\n总测试数: 8\n通过: 8\n失败: 0\n通过率: 100.00%\n总耗时: 836ms\n\n📄 测试报告已保存到: test-results/api-test-report.json\n",
+      "stderr": "",
+      "report": {
+        "summary": {
+          "total": 8,
+          "passed": 8,
+          "failed": 0,
+          "passRate": "100.00%",
+          "totalTime": "836ms"
+        },
+        "details": [
+          {
+            "testName": "获取公共新闻列表",
+            "passed": true,
+            "message": "状态码不正确或数据格式错误",
+            "responseTime": 172,
+            "timestamp": "2025-07-27T14:46:35.742Z"
+          },
+          {
+            "testName": "新闻列表分页功能",
+            "passed": true,
+            "message": "分页功能异常",
+            "responseTime": 21,
+            "timestamp": "2025-07-27T14:46:35.764Z"
+          },
+          {
+            "testName": "新闻分类过滤",
+            "passed": true,
+            "message": "分类过滤功能异常",
+            "responseTime": 19,
+            "timestamp": "2025-07-27T14:46:35.784Z"
+          },
+          {
+            "testName": "公共API响应时间 < 1000ms",
+            "passed": true,
+            "message": "响应时间: 172ms",
+            "responseTime": 172,
+            "timestamp": "2025-07-27T14:46:35.785Z"
+          },
+          {
+            "testName": "获取新闻详情",
+            "passed": true,
+            "message": "新闻详情获取失败",
+            "responseTime": 215,
+            "timestamp": "2025-07-27T14:46:36.001Z"
+          },
+          {
+            "testName": "新闻详情包含源文章信息",
+            "passed": "新华网财经",
+            "message": "缺少sourceUrl或sourceName字段",
+            "responseTime": 0,
+            "timestamp": "2025-07-27T14:46:36.002Z"
+          },
+          {
+            "testName": "SQL注入防护",
+            "passed": true,
+            "message": "可能存在SQL注入漏洞",
+            "responseTime": 29,
+            "timestamp": "2025-07-27T14:46:36.032Z"
+          },
+          {
+            "testName": "XSS防护",
+            "passed": true,
+            "message": "可能存在XSS漏洞",
+            "responseTime": 22,
+            "timestamp": "2025-07-27T14:46:36.054Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "端到端用户流程测试",
+      "script": "../../tests/e2e/user-workflows.js",
+      "success": false,
+      "exitCode": 1,
+      "duration": 2719,
+      "stdout": "🚀 开始端到端用户流程测试...\n📍 测试服务器: http://localhost:3002\n\n👤 测试用户浏览流程...\n检查页面: http://localhost:3002/\n响应状态: 200\nHTML长度: 27976\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 访问首页\n检查页面: http://localhost:3002/news\n响应状态: 200\nHTML长度: 12821\n检查结果: hasHtml=true, hasTitle=false, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 访问新闻列表页\n✅ 新闻列表页加载时间 < 3000ms\n检查页面: http://localhost:3002/news/1\n响应状态: 200\nHTML长度: 13366\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 访问新闻详情页\n❌ 新闻详情页包含源文章链接: 未找到源文章链接按钮\n✅ desktop设备兼容性\n✅ tablet设备兼容性\n✅ mobile设备兼容性\n\n🔐 测试管理员工作流程...\n检查页面: http://localhost:3002/admin/login\n响应状态: 200\nHTML长度: 16373\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 访问管理员登录页\n检查页面: http://localhost:3002/admin/news\n响应状态: 200\nHTML长度: 13819\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 访问新闻管理页\n❌ 新闻管理页包含语言切换功能: 未找到语言切换组件\n检查页面: http://localhost:3002/admin/news/collect\n响应状态: 200\nHTML长度: 14348\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 访问新闻采集页\n❌ 采集页包含进度显示: 未找到进度显示组件\n\n🌐 测试多语言功能...\n检查页面: http://localhost:3002/news?lang=zh\n响应状态: 200\nHTML长度: 12870\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ ZH语言页面访问\n检查页面: http://localhost:3002/news?lang=en\n响应状态: 200\nHTML长度: 12870\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ EN语言页面访问\n检查页面: http://localhost:3002/news?lang=ja\n响应状态: 200\nHTML长度: 12870\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ JA语言页面访问\n检查页面: http://localhost:3002/news?lang=ko\n响应状态: 200\nHTML长度: 12870\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ KO语言页面访问\n\n🔍 测试搜索功能...\n检查页面: http://localhost:3002/news?search=%E6%9C%8D%E8%A3%85\n响应状态: 200\nHTML长度: 12892\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 搜索功能 - \"服装\"\n检查页面: http://localhost:3002/news?search=%E5%B8%82%E5%9C%BA\n响应状态: 200\nHTML长度: 12892\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 搜索功能 - \"市场\"\n检查页面: http://localhost:3002/news?search=fashion\n响应状态: 200\nHTML长度: 12891\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 搜索功能 - \"fashion\"\n检查页面: http://localhost:3002/news?search=business\n响应状态: 200\nHTML长度: 12894\n检查结果: hasHtml=true, hasTitle=true, hasBody=true, noErrors=true\nHTML片段: <!DOCTYPE html><html lang=\"en\" class=\"__variable_e8ce0c __variable_6bee3b\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"stylesheet\" href\n✅ 搜索功能 - \"business\"\n\n⚡ 测试页面性能...\n✅ 首页加载时间 < 2000ms\n✅ 新闻列表加载时间 < 3000ms\n✅ 新闻详情加载时间 < 2000ms\n✅ 管理员登录加载时间 < 2000ms\n\n📊 端到端测试报告\nNaN\n总测试数: 25\n通过: 22\n失败: 3\n通过率: 88.00%\n总耗时: 2626ms\n\n❌ 失败的测试:\n  - 新闻详情页包含源文章链接: 未找到源文章链接按钮\n  - 新闻管理页包含语言切换功能: 未找到语言切换组件\n  - 采集页包含进度显示: 未找到进度显示组件\n\n📄 测试报告已保存到: test-results/e2e-test-report.json\n",
+      "stderr": "",
+      "report": {
+        "summary": {
+          "total": 25,
+          "passed": 22,
+          "failed": 3,
+          "passRate": "88.00%",
+          "totalTime": "2626ms"
+        },
+        "details": [
+          {
+            "testName": "访问首页",
+            "passed": true,
+            "message": "首页无法访问",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:36.266Z"
+          },
+          {
+            "testName": "访问新闻列表页",
+            "passed": true,
+            "message": "新闻列表页无法访问",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:36.506Z"
+          },
+          {
+            "testName": "新闻列表页加载时间 < 3000ms",
+            "passed": true,
+            "message": "加载时间: 30ms",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:36.536Z"
+          },
+          {
+            "testName": "访问新闻详情页",
+            "passed": true,
+            "message": "新闻详情页无法访问",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:36.943Z"
+          },
+          {
+            "testName": "新闻详情页包含源文章链接",
+            "passed": false,
+            "message": "未找到源文章链接按钮",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:36.943Z"
+          },
+          {
+            "testName": "desktop设备兼容性",
+            "passed": true,
+            "message": "设备兼容性问题",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:37.122Z"
+          },
+          {
+            "testName": "tablet设备兼容性",
+            "passed": true,
+            "message": "设备兼容性问题",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:37.122Z"
+          },
+          {
+            "testName": "mobile设备兼容性",
+            "passed": true,
+            "message": "设备兼容性问题",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:37.122Z"
+          },
+          {
+            "testName": "访问管理员登录页",
+            "passed": true,
+            "message": "登录页无法访问",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:37.551Z"
+          },
+          {
+            "testName": "访问新闻管理页",
+            "passed": true,
+            "message": "状态码: 200",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:37.635Z"
+          },
+          {
+            "testName": "新闻管理页包含语言切换功能",
+            "passed": false,
+            "message": "未找到语言切换组件",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:37.636Z"
+          },
+          {
+            "testName": "访问新闻采集页",
+            "passed": true,
+            "message": "状态码: 200",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:37.978Z"
+          },
+          {
+            "testName": "采集页包含进度显示",
+            "passed": false,
+            "message": "未找到进度显示组件",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:37.978Z"
+          },
+          {
+            "testName": "ZH语言页面访问",
+            "passed": true,
+            "message": "zh语言页面无法访问",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.020Z"
+          },
+          {
+            "testName": "EN语言页面访问",
+            "passed": true,
+            "message": "en语言页面无法访问",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.080Z"
+          },
+          {
+            "testName": "JA语言页面访问",
+            "passed": true,
+            "message": "ja语言页面无法访问",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.166Z"
+          },
+          {
+            "testName": "KO语言页面访问",
+            "passed": true,
+            "message": "ko语言页面无法访问",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.235Z"
+          },
+          {
+            "testName": "搜索功能 - \"服装\"",
+            "passed": true,
+            "message": "搜索\"服装\"失败",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.292Z"
+          },
+          {
+            "testName": "搜索功能 - \"市场\"",
+            "passed": true,
+            "message": "搜索\"市场\"失败",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.339Z"
+          },
+          {
+            "testName": "搜索功能 - \"fashion\"",
+            "passed": true,
+            "message": "搜索\"fashion\"失败",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.395Z"
+          },
+          {
+            "testName": "搜索功能 - \"business\"",
+            "passed": true,
+            "message": "搜索\"business\"失败",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.441Z"
+          },
+          {
+            "testName": "首页加载时间 < 2000ms",
+            "passed": true,
+            "message": "实际加载时间: 57ms",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.498Z"
+          },
+          {
+            "testName": "新闻列表加载时间 < 3000ms",
+            "passed": true,
+            "message": "实际加载时间: 53ms",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.551Z"
+          },
+          {
+            "testName": "新闻详情加载时间 < 2000ms",
+            "passed": true,
+            "message": "实际加载时间: 134ms",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.685Z"
+          },
+          {
+            "testName": "管理员登录加载时间 < 2000ms",
+            "passed": true,
+            "message": "实际加载时间: 86ms",
+            "screenshot": null,
+            "timestamp": "2025-07-27T14:46:38.771Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "数据质量验证",
+      "script": "../../tests/data/data-quality-validation.js",
+      "success": false,
+      "exitCode": 1,
+      "duration": 589,
+      "stdout": "🚀 开始数据质量与一致性验证...\n📍 测试服务器: http://localhost:3002\n\n📊 验证新闻数据完整性...\n✅ 新闻API响应格式正确\n✅ 新闻数据非空\n✅ 文章必需字段完整性\n❌ 文章源信息完整性: 0/19 篇文章包含源信息\n✅ 多语言数据支持\n✅ 文章ID唯一性\n\n🌐 验证多语言功能...\n✅ ZH语言API响应\n✅ ZH语言内容可用性\n✅ EN语言API响应\n✅ EN语言内容可用性\n✅ JA语言API响应\n✅ JA语言内容可用性\n✅ KO语言API响应\n✅ KO语言内容可用性\n\n🔍 验证搜索功能数据一致性...\n✅ 搜索\"服装\"(zh)响应\n✅ 搜索\"服装\"结果相关性\n✅ 搜索\"fashion\"(en)响应\n✅ 搜索\"市场\"(zh)响应\n✅ 搜索\"市场\"结果相关性\n✅ 搜索\"business\"(en)响应\n\n📂 验证分类数据一致性...\n✅ 分类\"fashion\"API响应\n✅ 分类\"underwear\"API响应\n✅ 分类\"business\"API响应\n✅ 分类\"business\"数据一致性\n\n🔄 验证数据同步机制...\n✅ 文章详情数据同步\n✅ 列表与详情数据一致性\n✅ 浏览量更新机制\n\n📈 验证数据质量指标...\n❌ 文章图片覆盖率: 0.0% (0/19)\n✅ 文章摘要覆盖率\n❌ 文章源信息覆盖率: 0.0% (0/19)\n✅ 文章标题长度合理性\n✅ 文章内容长度合理性\n\n📊 数据质量验证报告\nNaN\n总测试数: 32\n通过: 29\n失败: 3\n通过率: 90.63%\n总耗时: 495ms\n\n📈 数据质量指标:\n- 总文章数: 19\n- 图片覆盖率: 0.0%\n- 摘要覆盖率: 100.0%\n- 源信息覆盖率: 0.0%\n- 平均标题长度: 25.9 字符\n- 平均内容长度: 149.1 字符\n\n❌ 失败的测试:\n  - 文章源信息完整性: 0/19 篇文章包含源信息\n  - 文章图片覆盖率: 0.0% (0/19)\n  - 文章源信息覆盖率: 0.0% (0/19)\n\n📄 测试报告已保存到: test-results/data-quality-report.json\n",
+      "stderr": "",
+      "report": {
+        "summary": {
+          "total": 32,
+          "passed": 29,
+          "failed": 3,
+          "passRate": "90.63%",
+          "totalTime": "495ms"
+        },
+        "details": [
+          {
+            "testName": "新闻API响应格式正确",
+            "passed": true,
+            "message": "数据格式正确",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:38.958Z"
+          },
+          {
+            "testName": "新闻数据非空",
+            "passed": true,
+            "message": "当前文章数量: 19",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:38.958Z"
+          },
+          {
+            "testName": "文章必需字段完整性",
+            "passed": true,
+            "message": "19/19 篇文章字段完整",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:38.959Z"
+          },
+          {
+            "testName": "文章源信息完整性",
+            "passed": false,
+            "message": "0/19 篇文章包含源信息",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:38.959Z"
+          },
+          {
+            "testName": "多语言数据支持",
+            "passed": true,
+            "message": "19/19 篇文章支持多语言",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:38.959Z"
+          },
+          {
+            "testName": "文章ID唯一性",
+            "passed": true,
+            "message": "所有ID唯一",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:38.959Z"
+          },
+          {
+            "testName": "ZH语言API响应",
+            "passed": true,
+            "message": "响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:38.984Z"
+          },
+          {
+            "testName": "ZH语言内容可用性",
+            "passed": true,
+            "message": "有该语言内容",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:38.984Z"
+          },
+          {
+            "testName": "EN语言API响应",
+            "passed": true,
+            "message": "响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.009Z"
+          },
+          {
+            "testName": "EN语言内容可用性",
+            "passed": true,
+            "message": "有该语言内容",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.009Z"
+          },
+          {
+            "testName": "JA语言API响应",
+            "passed": true,
+            "message": "响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.033Z"
+          },
+          {
+            "testName": "JA语言内容可用性",
+            "passed": true,
+            "message": "有该语言内容",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.033Z"
+          },
+          {
+            "testName": "KO语言API响应",
+            "passed": true,
+            "message": "响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.055Z"
+          },
+          {
+            "testName": "KO语言内容可用性",
+            "passed": true,
+            "message": "有该语言内容",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.055Z"
+          },
+          {
+            "testName": "搜索\"服装\"(zh)响应",
+            "passed": true,
+            "message": "搜索响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.077Z"
+          },
+          {
+            "testName": "搜索\"服装\"结果相关性",
+            "passed": true,
+            "message": "19/19 个相关结果",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.077Z"
+          },
+          {
+            "testName": "搜索\"fashion\"(en)响应",
+            "passed": true,
+            "message": "搜索响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.099Z"
+          },
+          {
+            "testName": "搜索\"市场\"(zh)响应",
+            "passed": true,
+            "message": "搜索响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.122Z"
+          },
+          {
+            "testName": "搜索\"市场\"结果相关性",
+            "passed": true,
+            "message": "3/4 个相关结果",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.122Z"
+          },
+          {
+            "testName": "搜索\"business\"(en)响应",
+            "passed": true,
+            "message": "搜索响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.149Z"
+          },
+          {
+            "testName": "分类\"fashion\"API响应",
+            "passed": true,
+            "message": "分类响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.172Z"
+          },
+          {
+            "testName": "分类\"underwear\"API响应",
+            "passed": true,
+            "message": "分类响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.194Z"
+          },
+          {
+            "testName": "分类\"business\"API响应",
+            "passed": true,
+            "message": "分类响应正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.219Z"
+          },
+          {
+            "testName": "分类\"business\"数据一致性",
+            "passed": true,
+            "message": "所有文章分类正确",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.219Z"
+          },
+          {
+            "testName": "文章详情数据同步",
+            "passed": true,
+            "message": "详情数据同步正常",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.321Z"
+          },
+          {
+            "testName": "列表与详情数据一致性",
+            "passed": true,
+            "message": "基本字段一致",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.321Z"
+          },
+          {
+            "testName": "浏览量更新机制",
+            "passed": true,
+            "message": "浏览量: 5 -> 6",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.347Z"
+          },
+          {
+            "testName": "文章图片覆盖率",
+            "passed": false,
+            "message": "0.0% (0/19)",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.367Z"
+          },
+          {
+            "testName": "文章摘要覆盖率",
+            "passed": true,
+            "message": "100.0% (19/19)",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.367Z"
+          },
+          {
+            "testName": "文章源信息覆盖率",
+            "passed": false,
+            "message": "0.0% (0/19)",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.367Z"
+          },
+          {
+            "testName": "文章标题长度合理性",
+            "passed": true,
+            "message": "平均标题长度: 25.9 字符",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.367Z"
+          },
+          {
+            "testName": "文章内容长度合理性",
+            "passed": true,
+            "message": "平均内容长度: 149.1 字符",
+            "data": null,
+            "timestamp": "2025-07-27T14:46:39.367Z"
+          }
+        ]
+      }
+    },
+    {
+      "name": "安全性与性能测试",
+      "script": "../../tests/security/security-performance-test.js",
+      "success": true,
+      "exitCode": 0,
+      "duration": 2295,
+      "stdout": "🚀 开始安全性与性能测试...\n📍 测试服务器: http://localhost:3002\n\n🛡️ 测试SQL注入防护...\n✅ SQL注入防护 - 搜索参数\n✅ SQL注入防护 - 分类参数\n✅ SQL注入防护 - 搜索参数\n✅ SQL注入防护 - 分类参数\n✅ SQL注入防护 - 搜索参数\n✅ SQL注入防护 - 分类参数\n✅ SQL注入防护 - 搜索参数\n✅ SQL注入防护 - 分类参数\n✅ SQL注入防护 - 搜索参数\n✅ SQL注入防护 - 分类参数\n\n🛡️ 测试XSS防护...\n✅ XSS防护 - 搜索参数\n✅ XSS防护 - 页面渲染\n✅ XSS防护 - 搜索参数\n✅ XSS防护 - 页面渲染\n✅ XSS防护 - 搜索参数\n✅ XSS防护 - 页面渲染\n✅ XSS防护 - 搜索参数\n✅ XSS防护 - 页面渲染\n✅ XSS防护 - 搜索参数\n✅ XSS防护 - 页面渲染\n\n🛡️ 测试路径遍历防护...\n✅ 路径遍历防护\n✅ 路径遍历防护\n✅ 路径遍历防护\n✅ 路径遍历防护\n\n🔐 测试认证授权...\n✅ 管理员API未认证访问控制\n✅ 无效token访问控制\n✅ 管理员页面访问控制\n\n⚡ 测试API性能...\n✅ 新闻列表API响应时间\n✅ 大量数据API响应时间\n✅ 搜索API响应时间\n✅ 分类API响应时间\n\n⚡ 测试页面加载性能...\n✅ 首页加载时间\n✅ 新闻列表页加载时间\n✅ 管理员登录页加载时间\n\n⚡ 测试并发性能...\n发起10个并发请求...\n✅ 并发请求成功率\n✅ 并发请求平均响应时间\n\n📊 安全性与性能测试报告\nNaN\n总测试数: 36\n通过: 36\n失败: 0\n通过率: 100.00%\n总耗时: 2203ms\n\n⚡ API性能指标:\n- 新闻列表API: 22ms\n- 大量数据API: 21ms\n- 搜索API: 21ms\n- 分类API: 22ms\n\n📄 页面加载性能:\n- 首页: 48ms\n- 新闻列表页: 52ms\n- 管理员登录页: 42ms\n\n🔄 并发性能指标:\n- 并发用户数: 10\n- 成功请求数: 10\n- 平均响应时间: 53.60ms\n- 最大响应时间: 56ms\n\n📄 测试报告已保存到: test-results/security-performance-report.json\n",
+      "stderr": "",
+      "report": {
+        "summary": {
+          "total": 36,
+          "passed": 36,
+          "failed": 0,
+          "passRate": "100.00%",
+          "totalTime": "2203ms"
+        },
+        "performanceMetrics": {
+          "apiResponseTimes": {
+            "新闻列表API": 22,
+            "大量数据API": 21,
+            "搜索API": 21,
+            "分类API": 22
+          },
+          "pageLoadTimes": {
+            "首页": 48,
+            "新闻列表页": 52,
+            "管理员登录页": 42
+          },
+          "concurrentPerformance": {
+            "concurrentUsers": 10,
+            "totalTime": 59,
+            "successfulRequests": 10,
+            "averageResponseTime": 53.6,
+            "maxResponseTime": 56
+          }
+        },
+        "details": [
+          {
+            "testName": "SQL注入防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "'; DROP TABLE news; --",
+              "status": 200,
+              "responseTime": 77
+            },
+            "timestamp": "2025-07-27T14:46:39.551Z"
+          },
+          {
+            "testName": "SQL注入防护 - 分类参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "'; DROP TABLE news; --",
+              "status": 200,
+              "responseTime": 22
+            },
+            "timestamp": "2025-07-27T14:46:39.575Z"
+          },
+          {
+            "testName": "SQL注入防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "' OR '1'='1",
+              "status": 200,
+              "responseTime": 23
+            },
+            "timestamp": "2025-07-27T14:46:39.598Z"
+          },
+          {
+            "testName": "SQL注入防护 - 分类参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "' OR '1'='1",
+              "status": 200,
+              "responseTime": 22
+            },
+            "timestamp": "2025-07-27T14:46:39.622Z"
+          },
+          {
+            "testName": "SQL注入防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "'; SELECT * FROM users; --",
+              "status": 200,
+              "responseTime": 22
+            },
+            "timestamp": "2025-07-27T14:46:39.645Z"
+          },
+          {
+            "testName": "SQL注入防护 - 分类参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "'; SELECT * FROM users; --",
+              "status": 200,
+              "responseTime": 24
+            },
+            "timestamp": "2025-07-27T14:46:39.669Z"
+          },
+          {
+            "testName": "SQL注入防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "' UNION SELECT * FROM admin_users --",
+              "status": 200,
+              "responseTime": 20
+            },
+            "timestamp": "2025-07-27T14:46:39.691Z"
+          },
+          {
+            "testName": "SQL注入防护 - 分类参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "' UNION SELECT * FROM admin_users --",
+              "status": 200,
+              "responseTime": 20
+            },
+            "timestamp": "2025-07-27T14:46:39.712Z"
+          },
+          {
+            "testName": "SQL注入防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "1' AND (SELECT COUNT(*) FROM information_schema.tables)>0 --",
+              "status": 200,
+              "responseTime": 22
+            },
+            "timestamp": "2025-07-27T14:46:39.735Z"
+          },
+          {
+            "testName": "SQL注入防护 - 分类参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "1' AND (SELECT COUNT(*) FROM information_schema.tables)>0 --",
+              "status": 200,
+              "responseTime": 21
+            },
+            "timestamp": "2025-07-27T14:46:39.757Z"
+          },
+          {
+            "testName": "XSS防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "<script>alert(\"xss\")</script>",
+              "status": 200,
+              "responseTime": 20
+            },
+            "timestamp": "2025-07-27T14:46:39.778Z"
+          },
+          {
+            "testName": "XSS防护 - 页面渲染",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "<script>alert(\"xss\")</script>",
+              "status": 200,
+              "responseTime": 59
+            },
+            "timestamp": "2025-07-27T14:46:39.840Z"
+          },
+          {
+            "testName": "XSS防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "<img src=\"x\" onerror=\"alert(1)\">",
+              "status": 200,
+              "responseTime": 21
+            },
+            "timestamp": "2025-07-27T14:46:39.862Z"
+          },
+          {
+            "testName": "XSS防护 - 页面渲染",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "<img src=\"x\" onerror=\"alert(1)\">",
+              "status": 200,
+              "responseTime": 49
+            },
+            "timestamp": "2025-07-27T14:46:39.914Z"
+          },
+          {
+            "testName": "XSS防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "javascript:alert(\"xss\")",
+              "status": 200,
+              "responseTime": 21
+            },
+            "timestamp": "2025-07-27T14:46:39.935Z"
+          },
+          {
+            "testName": "XSS防护 - 页面渲染",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "javascript:alert(\"xss\")",
+              "status": 200,
+              "responseTime": 60
+            },
+            "timestamp": "2025-07-27T14:46:39.998Z"
+          },
+          {
+            "testName": "XSS防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "<svg onload=\"alert(1)\">",
+              "status": 200,
+              "responseTime": 20
+            },
+            "timestamp": "2025-07-27T14:46:40.018Z"
+          },
+          {
+            "testName": "XSS防护 - 页面渲染",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "<svg onload=\"alert(1)\">",
+              "status": 200,
+              "responseTime": 63
+            },
+            "timestamp": "2025-07-27T14:46:40.086Z"
+          },
+          {
+            "testName": "XSS防护 - 搜索参数",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "\"><script>alert(document.cookie)</script>",
+              "status": 200,
+              "responseTime": 20
+            },
+            "timestamp": "2025-07-27T14:46:40.106Z"
+          },
+          {
+            "testName": "XSS防护 - 页面渲染",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "\"><script>alert(document.cookie)</script>",
+              "status": 200,
+              "responseTime": 78
+            },
+            "timestamp": "2025-07-27T14:46:40.187Z"
+          },
+          {
+            "testName": "路径遍历防护",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "../../../etc/passwd",
+              "status": 404,
+              "responseTime": 519
+            },
+            "timestamp": "2025-07-27T14:46:40.713Z"
+          },
+          {
+            "testName": "路径遍历防护",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "..\\..\\..\\windows\\system32\\drivers\\etc\\hosts",
+              "status": 404,
+              "responseTime": 50
+            },
+            "timestamp": "2025-07-27T14:46:40.769Z"
+          },
+          {
+            "testName": "路径遍历防护",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "....//....//....//etc/passwd",
+              "status": 404,
+              "responseTime": 38
+            },
+            "timestamp": "2025-07-27T14:46:40.811Z"
+          },
+          {
+            "testName": "路径遍历防护",
+            "passed": true,
+            "message": "防护正常",
+            "metrics": {
+              "payload": "%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd",
+              "status": 404,
+              "responseTime": 66
+            },
+            "timestamp": "2025-07-27T14:46:40.877Z"
+          },
+          {
+            "testName": "管理员API未认证访问控制",
+            "passed": true,
+            "message": "正确拒绝未认证访问",
+            "metrics": {
+              "expectedStatus": 401,
+              "actualStatus": 401
+            },
+            "timestamp": "2025-07-27T14:46:41.270Z"
+          },
+          {
+            "testName": "无效token访问控制",
+            "passed": true,
+            "message": "正确拒绝无效token",
+            "metrics": {
+              "expectedStatus": 401,
+              "actualStatus": 401
+            },
+            "timestamp": "2025-07-27T14:46:41.297Z"
+          },
+          {
+            "testName": "管理员页面访问控制",
+            "passed": true,
+            "message": "状态码: 200",
+            "metrics": {
+              "status": 200
+            },
+            "timestamp": "2025-07-27T14:46:41.368Z"
+          },
+          {
+            "testName": "新闻列表API响应时间",
+            "passed": true,
+            "message": "22ms (阈值: 500ms)",
+            "metrics": {
+              "responseTime": 22,
+              "threshold": 500
+            },
+            "timestamp": "2025-07-27T14:46:41.392Z"
+          },
+          {
+            "testName": "大量数据API响应时间",
+            "passed": true,
+            "message": "21ms (阈值: 1000ms)",
+            "metrics": {
+              "responseTime": 21,
+              "threshold": 1000
+            },
+            "timestamp": "2025-07-27T14:46:41.414Z"
+          },
+          {
+            "testName": "搜索API响应时间",
+            "passed": true,
+            "message": "21ms (阈值: 500ms)",
+            "metrics": {
+              "responseTime": 21,
+              "threshold": 500
+            },
+            "timestamp": "2025-07-27T14:46:41.435Z"
+          },
+          {
+            "testName": "分类API响应时间",
+            "passed": true,
+            "message": "22ms (阈值: 500ms)",
+            "metrics": {
+              "responseTime": 22,
+              "threshold": 500
+            },
+            "timestamp": "2025-07-27T14:46:41.457Z"
+          },
+          {
+            "testName": "首页加载时间",
+            "passed": true,
+            "message": "48ms (阈值: 3000ms)",
+            "metrics": {
+              "responseTime": 48,
+              "threshold": 3000
+            },
+            "timestamp": "2025-07-27T14:46:41.508Z"
+          },
+          {
+            "testName": "新闻列表页加载时间",
+            "passed": true,
+            "message": "52ms (阈值: 3000ms)",
+            "metrics": {
+              "responseTime": 52,
+              "threshold": 3000
+            },
+            "timestamp": "2025-07-27T14:46:41.563Z"
+          },
+          {
+            "testName": "管理员登录页加载时间",
+            "passed": true,
+            "message": "42ms (阈值: 3000ms)",
+            "metrics": {
+              "responseTime": 42,
+              "threshold": 3000
+            },
+            "timestamp": "2025-07-27T14:46:41.608Z"
+          },
+          {
+            "testName": "并发请求成功率",
+            "passed": true,
+            "message": "10/10 个请求成功",
+            "metrics": {
+              "successfulRequests": 10,
+              "totalRequests": 10,
+              "successRate": "100.00%"
+            },
+            "timestamp": "2025-07-27T14:46:41.668Z"
+          },
+          {
+            "testName": "并发请求平均响应时间",
+            "passed": true,
+            "message": "平均: 53.60ms, 最大: 56ms",
+            "metrics": {
+              "averageResponseTime": 53.6,
+              "maxResponseTime": 56,
+              "threshold": 1000
+            },
+            "timestamp": "2025-07-27T14:46:41.668Z"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "baseUrl": "http://localhost:3002",
+    "timeout": 300000
+  }
+}

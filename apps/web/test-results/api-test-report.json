@@ -1,0 +1,67 @@
+{
+  "summary": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0,
+    "passRate": "100.00%",
+    "totalTime": "836ms"
+  },
+  "details": [
+    {
+      "testName": "获取公共新闻列表",
+      "passed": true,
+      "message": "状态码不正确或数据格式错误",
+      "responseTime": 172,
+      "timestamp": "2025-07-27T14:46:35.742Z"
+    },
+    {
+      "testName": "新闻列表分页功能",
+      "passed": true,
+      "message": "分页功能异常",
+      "responseTime": 21,
+      "timestamp": "2025-07-27T14:46:35.764Z"
+    },
+    {
+      "testName": "新闻分类过滤",
+      "passed": true,
+      "message": "分类过滤功能异常",
+      "responseTime": 19,
+      "timestamp": "2025-07-27T14:46:35.784Z"
+    },
+    {
+      "testName": "公共API响应时间 < 1000ms",
+      "passed": true,
+      "message": "响应时间: 172ms",
+      "responseTime": 172,
+      "timestamp": "2025-07-27T14:46:35.785Z"
+    },
+    {
+      "testName": "获取新闻详情",
+      "passed": true,
+      "message": "新闻详情获取失败",
+      "responseTime": 215,
+      "timestamp": "2025-07-27T14:46:36.001Z"
+    },
+    {
+      "testName": "新闻详情包含源文章信息",
+      "passed": "新华网财经",
+      "message": "缺少sourceUrl或sourceName字段",
+      "responseTime": 0,
+      "timestamp": "2025-07-27T14:46:36.002Z"
+    },
+    {
+      "testName": "SQL注入防护",
+      "passed": true,
+      "message": "可能存在SQL注入漏洞",
+      "responseTime": 29,
+      "timestamp": "2025-07-27T14:46:36.032Z"
+    },
+    {
+      "testName": "XSS防护",
+      "passed": true,
+      "message": "可能存在XSS漏洞",
+      "responseTime": 22,
+      "timestamp": "2025-07-27T14:46:36.054Z"
+    }
+  ]
+}

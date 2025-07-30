@@ -1,0 +1,98 @@
+{
+  "timestamp": "2025-07-26T15:01:45.146Z",
+  "environment": {
+    "baseUrl": "http://localhost:3000",
+    "apiUrl": "http://localhost:3000/api",
+    "timeout": 30000
+  },
+  "summary": {
+    "total": 10,
+    "passed": 8,
+    "failed": 2,
+    "skipped": 0,
+    "passRate": "80.00",
+    "totalDuration": 1658
+  },
+  "results": [
+    {
+      "testId": "HEALTH-001",
+      "title": "系统健康检查",
+      "status": "PASS",
+      "duration": 22,
+      "error": null,
+      "timestamp": "2025-07-26T15:01:43.510Z"
+    },
+    {
+      "testId": "AUTH-001",
+      "title": "管理员正常登录",
+      "status": "FAIL",
+      "duration": 629,
+      "error": "HTTP 401",
+      "timestamp": "2025-07-26T15:01:44.141Z"
+    },
+    {
+      "testId": "AUTH-002",
+      "title": "用户名不存在",
+      "status": "PASS",
+      "duration": 15,
+      "error": null,
+      "timestamp": "2025-07-26T15:01:44.157Z"
+    },
+    {
+      "testId": "AUTH-003",
+      "title": "密码错误",
+      "status": "PASS",
+      "duration": 16,
+      "error": null,
+      "timestamp": "2025-07-26T15:01:44.173Z"
+    },
+    {
+      "testId": "AUTH-004",
+      "title": "空用户名",
+      "status": "PASS",
+      "duration": 13,
+      "error": null,
+      "timestamp": "2025-07-26T15:01:44.186Z"
+    },
+    {
+      "testId": "AUTH-005",
+      "title": "空密码",
+      "status": "PASS",
+      "duration": 16,
+      "error": null,
+      "timestamp": "2025-07-26T15:01:44.203Z"
+    },
+    {
+      "testId": "USER-001",
+      "title": "查看用户列表",
+      "status": "FAIL",
+      "duration": 762,
+      "error": "HTTP 401",
+      "timestamp": "2025-07-26T15:01:44.979Z"
+    },
+    {
+      "testId": "AUTH-019",
+      "title": "未登录访问保护页面",
+      "status": "PASS",
+      "duration": 17,
+      "error": null,
+      "timestamp": "2025-07-26T15:01:44.996Z"
+    },
+    {
+      "testId": "AUTH-020",
+      "title": "无效Token访问",
+      "status": "PASS",
+      "duration": 19,
+      "error": null,
+      "timestamp": "2025-07-26T15:01:45.015Z"
+    },
+    {
+      "testId": "AUTH-016",
+      "title": "正常登出",
+      "status": "PASS",
+      "duration": 110,
+      "error": null,
+      "timestamp": "2025-07-26T15:01:45.144Z"
+    }
+  ]
+}

@@ -1,0 +1,416 @@
+{
+  "summary": {
+    "total": 36,
+    "passed": 36,
+    "failed": 0,
+    "passRate": "100.00%",
+    "totalTime": "2203ms"
+  },
+  "performanceMetrics": {
+    "apiResponseTimes": {
+      "新闻列表API": 22,
+      "大量数据API": 21,
+      "搜索API": 21,
+      "分类API": 22
+    },
+    "pageLoadTimes": {
+      "首页": 48,
+      "新闻列表页": 52,
+      "管理员登录页": 42
+    },
+    "concurrentPerformance": {
+      "concurrentUsers": 10,
+      "totalTime": 59,
+      "successfulRequests": 10,
+      "averageResponseTime": 53.6,
+      "maxResponseTime": 56
+    }
+  },
+  "details": [
+    {
+      "testName": "SQL注入防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "'; DROP TABLE news; --",
+        "status": 200,
+        "responseTime": 77
+      },
+      "timestamp": "2025-07-27T14:46:39.551Z"
+    },
+    {
+      "testName": "SQL注入防护 - 分类参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "'; DROP TABLE news; --",
+        "status": 200,
+        "responseTime": 22
+      },
+      "timestamp": "2025-07-27T14:46:39.575Z"
+    },
+    {
+      "testName": "SQL注入防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "' OR '1'='1",
+        "status": 200,
+        "responseTime": 23
+      },
+      "timestamp": "2025-07-27T14:46:39.598Z"
+    },
+    {
+      "testName": "SQL注入防护 - 分类参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "' OR '1'='1",
+        "status": 200,
+        "responseTime": 22
+      },
+      "timestamp": "2025-07-27T14:46:39.622Z"
+    },
+    {
+      "testName": "SQL注入防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "'; SELECT * FROM users; --",
+        "status": 200,
+        "responseTime": 22
+      },
+      "timestamp": "2025-07-27T14:46:39.645Z"
+    },
+    {
+      "testName": "SQL注入防护 - 分类参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "'; SELECT * FROM users; --",
+        "status": 200,
+        "responseTime": 24
+      },
+      "timestamp": "2025-07-27T14:46:39.669Z"
+    },
+    {
+      "testName": "SQL注入防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "' UNION SELECT * FROM admin_users --",
+        "status": 200,
+        "responseTime": 20
+      },
+      "timestamp": "2025-07-27T14:46:39.691Z"
+    },
+    {
+      "testName": "SQL注入防护 - 分类参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "' UNION SELECT * FROM admin_users --",
+        "status": 200,
+        "responseTime": 20
+      },
+      "timestamp": "2025-07-27T14:46:39.712Z"
+    },
+    {
+      "testName": "SQL注入防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "1' AND (SELECT COUNT(*) FROM information_schema.tables)>0 --",
+        "status": 200,
+        "responseTime": 22
+      },
+      "timestamp": "2025-07-27T14:46:39.735Z"
+    },
+    {
+      "testName": "SQL注入防护 - 分类参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "1' AND (SELECT COUNT(*) FROM information_schema.tables)>0 --",
+        "status": 200,
+        "responseTime": 21
+      },
+      "timestamp": "2025-07-27T14:46:39.757Z"
+    },
+    {
+      "testName": "XSS防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "<script>alert(\"xss\")</script>",
+        "status": 200,
+        "responseTime": 20
+      },
+      "timestamp": "2025-07-27T14:46:39.778Z"
+    },
+    {
+      "testName": "XSS防护 - 页面渲染",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "<script>alert(\"xss\")</script>",
+        "status": 200,
+        "responseTime": 59
+      },
+      "timestamp": "2025-07-27T14:46:39.840Z"
+    },
+    {
+      "testName": "XSS防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "<img src=\"x\" onerror=\"alert(1)\">",
+        "status": 200,
+        "responseTime": 21
+      },
+      "timestamp": "2025-07-27T14:46:39.862Z"
+    },
+    {
+      "testName": "XSS防护 - 页面渲染",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "<img src=\"x\" onerror=\"alert(1)\">",
+        "status": 200,
+        "responseTime": 49
+      },
+      "timestamp": "2025-07-27T14:46:39.914Z"
+    },
+    {
+      "testName": "XSS防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "javascript:alert(\"xss\")",
+        "status": 200,
+        "responseTime": 21
+      },
+      "timestamp": "2025-07-27T14:46:39.935Z"
+    },
+    {
+      "testName": "XSS防护 - 页面渲染",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "javascript:alert(\"xss\")",
+        "status": 200,
+        "responseTime": 60
+      },
+      "timestamp": "2025-07-27T14:46:39.998Z"
+    },
+    {
+      "testName": "XSS防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "<svg onload=\"alert(1)\">",
+        "status": 200,
+        "responseTime": 20
+      },
+      "timestamp": "2025-07-27T14:46:40.018Z"
+    },
+    {
+      "testName": "XSS防护 - 页面渲染",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "<svg onload=\"alert(1)\">",
+        "status": 200,
+        "responseTime": 63
+      },
+      "timestamp": "2025-07-27T14:46:40.086Z"
+    },
+    {
+      "testName": "XSS防护 - 搜索参数",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "\"><script>alert(document.cookie)</script>",
+        "status": 200,
+        "responseTime": 20
+      },
+      "timestamp": "2025-07-27T14:46:40.106Z"
+    },
+    {
+      "testName": "XSS防护 - 页面渲染",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "\"><script>alert(document.cookie)</script>",
+        "status": 200,
+        "responseTime": 78
+      },
+      "timestamp": "2025-07-27T14:46:40.187Z"
+    },
+    {
+      "testName": "路径遍历防护",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "../../../etc/passwd",
+        "status": 404,
+        "responseTime": 519
+      },
+      "timestamp": "2025-07-27T14:46:40.713Z"
+    },
+    {
+      "testName": "路径遍历防护",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "..\\..\\..\\windows\\system32\\drivers\\etc\\hosts",
+        "status": 404,
+        "responseTime": 50
+      },
+      "timestamp": "2025-07-27T14:46:40.769Z"
+    },
+    {
+      "testName": "路径遍历防护",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "....//....//....//etc/passwd",
+        "status": 404,
+        "responseTime": 38
+      },
+      "timestamp": "2025-07-27T14:46:40.811Z"
+    },
+    {
+      "testName": "路径遍历防护",
+      "passed": true,
+      "message": "防护正常",
+      "metrics": {
+        "payload": "%2e%2e%2f%2e%2e%2f%2e%2e%2fetc%2fpasswd",
+        "status": 404,
+        "responseTime": 66
+      },
+      "timestamp": "2025-07-27T14:46:40.877Z"
+    },
+    {
+      "testName": "管理员API未认证访问控制",
+      "passed": true,
+      "message": "正确拒绝未认证访问",
+      "metrics": {
+        "expectedStatus": 401,
+        "actualStatus": 401
+      },
+      "timestamp": "2025-07-27T14:46:41.270Z"
+    },
+    {
+      "testName": "无效token访问控制",
+      "passed": true,
+      "message": "正确拒绝无效token",
+      "metrics": {
+        "expectedStatus": 401,
+        "actualStatus": 401
+      },
+      "timestamp": "2025-07-27T14:46:41.297Z"
+    },
+    {
+      "testName": "管理员页面访问控制",
+      "passed": true,
+      "message": "状态码: 200",
+      "metrics": {
+        "status": 200
+      },
+      "timestamp": "2025-07-27T14:46:41.368Z"
+    },
+    {
+      "testName": "新闻列表API响应时间",
+      "passed": true,
+      "message": "22ms (阈值: 500ms)",
+      "metrics": {
+        "responseTime": 22,
+        "threshold": 500
+      },
+      "timestamp": "2025-07-27T14:46:41.392Z"
+    },
+    {
+      "testName": "大量数据API响应时间",
+      "passed": true,
+      "message": "21ms (阈值: 1000ms)",
+      "metrics": {
+        "responseTime": 21,
+        "threshold": 1000
+      },
+      "timestamp": "2025-07-27T14:46:41.414Z"
+    },
+    {
+      "testName": "搜索API响应时间",
+      "passed": true,
+      "message": "21ms (阈值: 500ms)",
+      "metrics": {
+        "responseTime": 21,
+        "threshold": 500
+      },
+      "timestamp": "2025-07-27T14:46:41.435Z"
+    },
+    {
+      "testName": "分类API响应时间",
+      "passed": true,
+      "message": "22ms (阈值: 500ms)",
+      "metrics": {
+        "responseTime": 22,
+        "threshold": 500
+      },
+      "timestamp": "2025-07-27T14:46:41.457Z"
+    },
+    {
+      "testName": "首页加载时间",
+      "passed": true,
+      "message": "48ms (阈值: 3000ms)",
+      "metrics": {
+        "responseTime": 48,
+        "threshold": 3000
+      },
+      "timestamp": "2025-07-27T14:46:41.508Z"
+    },
+    {
+      "testName": "新闻列表页加载时间",
+      "passed": true,
+      "message": "52ms (阈值: 3000ms)",
+      "metrics": {
+        "responseTime": 52,
+        "threshold": 3000
+      },
+      "timestamp": "2025-07-27T14:46:41.563Z"
+    },
+    {
+      "testName": "管理员登录页加载时间",
+      "passed": true,
+      "message": "42ms (阈值: 3000ms)",
+      "metrics": {
+        "responseTime": 42,
+        "threshold": 3000
+      },
+      "timestamp": "2025-07-27T14:46:41.608Z"
+    },
+    {
+      "testName": "并发请求成功率",
+      "passed": true,
+      "message": "10/10 个请求成功",
+      "metrics": {
+        "successfulRequests": 10,
+        "totalRequests": 10,
+        "successRate": "100.00%"
+      },
+      "timestamp": "2025-07-27T14:46:41.668Z"
+    },
+    {
+      "testName": "并发请求平均响应时间",
+      "passed": true,
+      "message": "平均: 53.60ms, 最大: 56ms",
+      "metrics": {
+        "averageResponseTime": 53.6,
+        "maxResponseTime": 56,
+        "threshold": 1000
+      },
+      "timestamp": "2025-07-27T14:46:41.668Z"
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "summary": {
+    "total": 32,
+    "passed": 29,
+    "failed": 3,
+    "passRate": "90.63%",
+    "totalTime": "495ms"
+  },
+  "details": [
+    {
+      "testName": "新闻API响应格式正确",
+      "passed": true,
+      "message": "数据格式正确",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:38.958Z"
+    },
+    {
+      "testName": "新闻数据非空",
+      "passed": true,
+      "message": "当前文章数量: 19",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:38.958Z"
+    },
+    {
+      "testName": "文章必需字段完整性",
+      "passed": true,
+      "message": "19/19 篇文章字段完整",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:38.959Z"
+    },
+    {
+      "testName": "文章源信息完整性",
+      "passed": false,
+      "message": "0/19 篇文章包含源信息",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:38.959Z"
+    },
+    {
+      "testName": "多语言数据支持",
+      "passed": true,
+      "message": "19/19 篇文章支持多语言",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:38.959Z"
+    },
+    {
+      "testName": "文章ID唯一性",
+      "passed": true,
+      "message": "所有ID唯一",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:38.959Z"
+    },
+    {
+      "testName": "ZH语言API响应",
+      "passed": true,
+      "message": "响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:38.984Z"
+    },
+    {
+      "testName": "ZH语言内容可用性",
+      "passed": true,
+      "message": "有该语言内容",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:38.984Z"
+    },
+    {
+      "testName": "EN语言API响应",
+      "passed": true,
+      "message": "响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.009Z"
+    },
+    {
+      "testName": "EN语言内容可用性",
+      "passed": true,
+      "message": "有该语言内容",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.009Z"
+    },
+    {
+      "testName": "JA语言API响应",
+      "passed": true,
+      "message": "响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.033Z"
+    },
+    {
+      "testName": "JA语言内容可用性",
+      "passed": true,
+      "message": "有该语言内容",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.033Z"
+    },
+    {
+      "testName": "KO语言API响应",
+      "passed": true,
+      "message": "响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.055Z"
+    },
+    {
+      "testName": "KO语言内容可用性",
+      "passed": true,
+      "message": "有该语言内容",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.055Z"
+    },
+    {
+      "testName": "搜索\"服装\"(zh)响应",
+      "passed": true,
+      "message": "搜索响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.077Z"
+    },
+    {
+      "testName": "搜索\"服装\"结果相关性",
+      "passed": true,
+      "message": "19/19 个相关结果",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.077Z"
+    },
+    {
+      "testName": "搜索\"fashion\"(en)响应",
+      "passed": true,
+      "message": "搜索响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.099Z"
+    },
+    {
+      "testName": "搜索\"市场\"(zh)响应",
+      "passed": true,
+      "message": "搜索响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.122Z"
+    },
+    {
+      "testName": "搜索\"市场\"结果相关性",
+      "passed": true,
+      "message": "3/4 个相关结果",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.122Z"
+    },
+    {
+      "testName": "搜索\"business\"(en)响应",
+      "passed": true,
+      "message": "搜索响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.149Z"
+    },
+    {
+      "testName": "分类\"fashion\"API响应",
+      "passed": true,
+      "message": "分类响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.172Z"
+    },
+    {
+      "testName": "分类\"underwear\"API响应",
+      "passed": true,
+      "message": "分类响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.194Z"
+    },
+    {
+      "testName": "分类\"business\"API响应",
+      "passed": true,
+      "message": "分类响应正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.219Z"
+    },
+    {
+      "testName": "分类\"business\"数据一致性",
+      "passed": true,
+      "message": "所有文章分类正确",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.219Z"
+    },
+    {
+      "testName": "文章详情数据同步",
+      "passed": true,
+      "message": "详情数据同步正常",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.321Z"
+    },
+    {
+      "testName": "列表与详情数据一致性",
+      "passed": true,
+      "message": "基本字段一致",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.321Z"
+    },
+    {
+      "testName": "浏览量更新机制",
+      "passed": true,
+      "message": "浏览量: 5 -> 6",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.347Z"
+    },
+    {
+      "testName": "文章图片覆盖率",
+      "passed": false,
+      "message": "0.0% (0/19)",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.367Z"
+    },
+    {
+      "testName": "文章摘要覆盖率",
+      "passed": true,
+      "message": "100.0% (19/19)",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.367Z"
+    },
+    {
+      "testName": "文章源信息覆盖率",
+      "passed": false,
+      "message": "0.0% (0/19)",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.367Z"
+    },
+    {
+      "testName": "文章标题长度合理性",
+      "passed": true,
+      "message": "平均标题长度: 25.9 字符",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.367Z"
+    },
+    {
+      "testName": "文章内容长度合理性",
+      "passed": true,
+      "message": "平均内容长度: 149.1 字符",
+      "data": null,
+      "timestamp": "2025-07-27T14:46:39.367Z"
+    }
+  ]
+}

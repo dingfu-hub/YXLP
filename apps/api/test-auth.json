@@ -1,0 +1,10 @@
+{
+  "email": "test2@example.com",
+  "password": "Password123!",
+  "confirmPassword": "Password123!",
+  "role": "customer",
+  "firstName": "Test",
+  "lastName": "User2",
+  "country": "US",
+  "acceptTerms": true
+}

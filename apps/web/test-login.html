@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YXLP 登录测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo h1 {
+            color: #667eea;
+            margin: 0;
+            font-size: 2em;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input[type="email"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #5a6fd8;
+        }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .error {
+            color: #e74c3c;
+            margin-top: 10px;
+            padding: 10px;
+            background: #fdf2f2;
+            border: 1px solid #fecaca;
+            border-radius: 5px;
+        }
+        .success {
+            color: #27ae60;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f0f9f0;
+            border: 1px solid #a7f3d0;
+            border-radius: 5px;
+        }
+        .loading {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <h1>🌟 YXLP</h1>
+            <p>欢迎回来</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">邮箱地址</label>
+                <input type="email" id="email" name="email" value="test2@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" value="Password123!" required>
+            </div>
+            
+            <button type="submit" class="btn" id="loginBtn">登录</button>
+        </form>
+        
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3001';
+        
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('message');
+            const loginBtn = document.getElementById('loginBtn');
+            
+            // 清除之前的消息
+            messageDiv.innerHTML = '';
+            
+            // 显示加载状态
+            loginBtn.disabled = true;
+            loginBtn.textContent = '登录中...';
+            messageDiv.innerHTML = '<div class="loading">正在验证登录信息...</div>';
+            
+            try {
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    messageDiv.innerHTML = `
+                        <div class="success">
+                            <strong>登录成功！</strong><br>
+                            用户: ${data.user.profile.firstName} ${data.user.profile.lastName}<br>
+                            角色: ${data.user.role}<br>
+                            Token: ${data.accessToken.substring(0, 20)}...
+                        </div>
+                    `;
+                    
+                    // 存储token
+                    localStorage.setItem('accessToken', data.accessToken);
+                    localStorage.setItem('refreshToken', data.refreshToken);
+                    
+                } else {
+                    messageDiv.innerHTML = `
+                        <div class="error">
+                            <strong>登录失败</strong><br>
+                            ${data.message || '未知错误'}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('登录错误:', error);
+                messageDiv.innerHTML = `
+                    <div class="error">
+                        <strong>网络错误</strong><br>
+                        ${error.message}<br>
+                        请检查API服务器是否运行在 ${API_URL}
+                    </div>
+                `;
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = '登录';
+            }
+        });
+        
+        // 页面加载时检查API连接
+        window.addEventListener('load', async function() {
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                if (response.ok) {
+                    console.log('API服务器连接正常');
+                } else {
+                    console.warn('API服务器响应异常');
+                }
+            } catch (error) {
+                console.error('无法连接到API服务器:', error);
+            }
+        });
+    </script>
+</body>
+</html>

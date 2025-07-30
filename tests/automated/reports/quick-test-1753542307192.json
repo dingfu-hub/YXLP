@@ -1,0 +1,98 @@
+{
+  "timestamp": "2025-07-26T15:05:07.191Z",
+  "environment": {
+    "baseUrl": "http://localhost:3000",
+    "apiUrl": "http://localhost:3000/api",
+    "timeout": 30000
+  },
+  "summary": {
+    "total": 10,
+    "passed": 9,
+    "failed": 1,
+    "skipped": 0,
+    "passRate": "90.00",
+    "totalDuration": 195
+  },
+  "results": [
+    {
+      "testId": "HEALTH-001",
+      "title": "系统健康检查",
+      "status": "PASS",
+      "duration": 19,
+      "error": null,
+      "timestamp": "2025-07-26T15:05:07.014Z"
+    },
+    {
+      "testId": "AUTH-001",
+      "title": "管理员正常登录",
+      "status": "PASS",
+      "duration": 20,
+      "error": null,
+      "timestamp": "2025-07-26T15:05:07.035Z"
+    },
+    {
+      "testId": "AUTH-002",
+      "title": "用户名不存在",
+      "status": "PASS",
+      "duration": 15,
+      "error": null,
+      "timestamp": "2025-07-26T15:05:07.051Z"
+    },
+    {
+      "testId": "AUTH-003",
+      "title": "密码错误",
+      "status": "PASS",
+      "duration": 14,
+      "error": null,
+      "timestamp": "2025-07-26T15:05:07.065Z"
+    },
+    {
+      "testId": "AUTH-004",
+      "title": "空用户名",
+      "status": "PASS",
+      "duration": 13,
+      "error": null,
+      "timestamp": "2025-07-26T15:05:07.079Z"
+    },
+    {
+      "testId": "AUTH-005",
+      "title": "空密码",
+      "status": "PASS",
+      "duration": 13,
+      "error": null,
+      "timestamp": "2025-07-26T15:05:07.092Z"
+    },
+    {
+      "testId": "USER-001",
+      "title": "查看用户列表",
+      "status": "FAIL",
+      "duration": 21,
+      "error": "Expected users array, got: {\"success\":true,\"data\":{\"users\":[{\"id\":\"user_004\",\"email\":\"customer@example.com\",\"username\":\"customer_001\",\"profile\":{\"firstName\":\"王\",\"lastName\":\"女士\",\"displayName\":\"王女士\",\"avatar\":\"/avatars/customer.jpg\",\"bio\":\"时尚爱好者，喜欢购买优质服装\"},\"permissions\":[\"products:read\",\"orders:read\",\"orders:write\"],\"status\":\"active\",\"emailVerified\":true,\"phoneVerified\":false,\"phone\":\"+86-13600136000\",\"lastLoginAt\":\"2024-01-14T20:30:00.000Z\",\"lastActiveAt\":\"2024-01-14T21:45:00.000Z\",\"loginCount\":23,\"failedLoginAttempts\":0,\"security\":{\"twoFactorEnabled\":false,\"loginNotifications\":false,\"sessionTimeout\":120,\"passwordLastChanged\":\"2024-01-10T00:00:00.000Z\",\"trustedDevices\":0},\"preferences\":{\"language\":\"zh-CN\",\"timezone\":\"Asia/Shanghai\",\"currency\":\"CNY\",\"dateFormat\":\"YYYY-MM-DD\",\"timeFormat\":\"12h\",\"theme\":\"auto\",\"notifications\":{\"email\":{\"marketing\":true,\"orderUpdates\":true,\"securityAlerts\":true,\"systemNotifications\":false},\"sms\":{\"orderUpdates\":true,\"securityAlerts\":false,\"marketingPromotions\":true},\"push\":{\"orderUpdates\":true,\"chatMessages\":false,\"promotions\":true}},\"privacy\":{\"profileVisibility\":\"private\",\"showOnlineStatus\":false,\"allowSearchByEmail\":false,\"allowSearchByPhone\":false,\"dataProcessingConsent\":true,\"marketingConsent\":true,\"analyticsConsent\":true}},\"metadata\":{\"source\":\"registration\",\"referrer\":\"google_ads\",\"customerSegment\":\"premium\"},\"createdAt\":\"2024-01-10T16:30:00.000Z\",\"updatedAt\":\"2024-01-14T21:45:00.000Z\"},{\"id\":\"user_003\",\"email\":\"staff@example.com\",\"username\":\"dealer_staff\",\"profile\":{\"firstName\":\"李\",\"lastName\":\"小姐\",\"displayName\":\"李小姐\",\"avatar\":\"/avatars/staff.jpg\",\"company\":\"时尚服装批发有限公司\",\"jobTitle\":\"业务员\",\"bio\":\"经销商业务员，负责客户服务和订单处理\"},\"permissions\":[\"products:read\",\"orders:read\",\"orders:write\"],\"status\":\"active\",\"emailVerified\":true,\"phoneVerified\":true,\"phone\":\"+86-13700137000\",\"lastLoginAt\":\"2024-01-15T09:00:00.000Z\",\"lastActiveAt\":\"2024-01-15T10:15:00.000Z\",\"loginCount\":45,\"failedLoginAttempts\":0,\"dealerId\":\"dealer_001\",\"security\":{\"twoFactorEnabled\":false,\"loginNotifications\":true,\"sessionTimeout\":240,\"passwordLastChanged\":\"2024-01-05T00:00:00.000Z\",\"trustedDevices\":0},\"preferences\":{\"language\":\"zh-CN\",\"timezone\":\"Asia/Shanghai\",\"currency\":\"CNY\",\"dateFormat\":\"YYYY-MM-DD\",\"timeFormat\":\"24h\",\"theme\":\"light\",\"notifications\":{\"email\":{\"marketing\":false,\"orderUpdates\":true,\"securityAlerts\":true,\"systemNotifications\":false},\"sms\":{\"orderUpdates\":true,\"securityAlerts\":true,\"marketingPromotions\":false},\"push\":{\"orderUpdates\":true,\"chatMessages\":true,\"promotions\":false}},\"privacy\":{\"profileVisibility\":\"contacts_only\",\"showOnlineStatus\":true,\"allowSearchByEmail\":false,\"allowSearchByPhone\":false,\"dataProcessingConsent\":true,\"marketingConsent\":false,\"analyticsConsent\":true}},\"metadata\":{\"source\":\"invitation\",\"invitedBy\":\"user_002\"},\"createdAt\":\"2024-01-05T14:00:00.000Z\",\"updatedAt\":\"2024-01-15T10:15:00.000Z\"},{\"id\":\"user_002\",\"email\":\"dealer@example.com\",\"username\":\"dealer_admin\",\"profile\":{\"firstName\":\"张\",\"lastName\":\"经理\",\"displayName\":\"张经理\",\"avatar\":\"/avatars/dealer.jpg\",\"company\":\"时尚服装批发有限公司\",\"jobTitle\":\"总经理\",\"bio\":\"资深经销商，专注服装批发业务\"},\"permissions\":[\"products:read\",\"products:write\",\"orders:read\",\"orders:write\",\"analytics:read\",\"users:read\",\"users:write\"],\"status\":\"active\",\"emailVerified\":true,\"phoneVerified\":true,\"phone\":\"+86-13900139000\",\"lastLoginAt\":\"2024-01-15T08:30:00.000Z\",\"lastActiveAt\":\"2024-01-15T09:45:00.000Z\",\"loginCount\":89,\"failedLoginAttempts\":0,\"dealerId\":\"dealer_001\",\"security\":{\"twoFactorEnabled\":false,\"loginNotifications\":true,\"sessionTimeout\":240,\"passwordLastChanged\":\"2024-01-02T00:00:00.000Z\",\"trustedDevices\":0},\"preferences\":{\"language\":\"zh-CN\",\"timezone\":\"Asia/Shanghai\",\"currency\":\"CNY\",\"dateFormat\":\"YYYY-MM-DD\",\"timeFormat\":\"24h\",\"theme\":\"light\",\"notifications\":{\"email\":{\"marketing\":true,\"orderUpdates\":true,\"securityAlerts\":true,\"systemNotifications\":true},\"sms\":{\"orderUpdates\":true,\"securityAlerts\":true,\"marketingPromotions\":true},\"push\":{\"orderUpdates\":true,\"chatMessages\":true,\"promotions\":true}},\"privacy\":{\"profileVisibility\":\"public\",\"showOnlineStatus\":true,\"allowSearchByEmail\":true,\"allowSearchByPhone\":true,\"dataProcessingConsent\":true,\"marketingConsent\":true,\"analyticsConsent\":true}},\"metadata\":{\"source\":\"registration\",\"businessType\":\"wholesale\",\"annualRevenue\":\"1000000-5000000\"},\"createdAt\":\"2024-01-02T10:00:00.000Z\",\"updatedAt\":\"2024-01-15T09:45:00.000Z\"},{\"id\":\"user_001\",\"email\":\"admin@yxlp.com\",\"username\":\"admin\",\"profile\":{\"firstName\":\"系统\",\"lastName\":\"管理员\",\"displayName\":\"超级管理员\",\"avatar\":\"/avatars/admin.jpg\",\"company\":\"YXLP Platform\",\"jobTitle\":\"System Administrator\",\"bio\":\"平台超级管理员，负责系统整体管理和维护\"},\"role\":\"super_admin\",\"permissions\":[\"users:read\",\"users:write\",\"users:delete\",\"products:read\",\"products:write\",\"products:delete\",\"orders:read\",\"orders:write\",\"orders:delete\",\"analytics:read\",\"analytics:write\",\"system:read\",\"system:write\",\"system:config\"],\"status\":\"active\",\"emailVerified\":true,\"phoneVerified\":true,\"phone\":\"+86-13800138000\",\"lastLoginAt\":\"2024-01-15T09:00:00.000Z\",\"lastActiveAt\":\"2024-01-15T10:30:00.000Z\",\"loginCount\":156,\"failedLoginAttempts\":0,\"security\":{\"twoFactorEnabled\":true,\"loginNotifications\":true,\"sessionTimeout\":480,\"passwordLastChanged\":\"2024-01-01T00:00:00.000Z\",\"trustedDevices\":0},\"preferences\":{\"language\":\"zh-CN\",\"timezone\":\"Asia/Shanghai\",\"currency\":\"CNY\",\"dateFormat\":\"YYYY-MM-DD\",\"timeFormat\":\"24h\",\"theme\":\"light\",\"notifications\":{\"email\":{\"marketing\":false,\"orderUpdates\":true,\"securityAlerts\":true,\"systemNotifications\":true},\"sms\":{\"orderUpdates\":true,\"securityAlerts\":true,\"marketingPromotions\":false},\"push\":{\"orderUpdates\":true,\"chatMessages\":true,\"promotions\":false}},\"privacy\":{\"profileVisibility\":\"private\",\"showOnlineStatus\":false,\"allowSearchByEmail\":false,\"allowSearchByPhone\":false,\"dataProcessingConsent\":true,\"marketingConsent\":false,\"analyticsConsent\":true}},\"metadata\":{\"source\":\"system\",\"notes\":\"系统初始管理员账户\"},\"createdAt\":\"2024-01-01T00:00:00.000Z\",\"updatedAt\":\"2024-01-15T10:30:00.000Z\"}],\"total\":4,\"pagination\":{\"page\":1,\"limit\":20,\"totalPages\":1}}}",
+      "timestamp": "2025-07-26T15:05:07.132Z"
+    },
+    {
+      "testId": "AUTH-019",
+      "title": "未登录访问保护页面",
+      "status": "PASS",
+      "duration": 15,
+      "error": null,
+      "timestamp": "2025-07-26T15:05:07.149Z"
+    },
+    {
+      "testId": "AUTH-020",
+      "title": "无效Token访问",
+      "status": "PASS",
+      "duration": 16,
+      "error": null,
+      "timestamp": "2025-07-26T15:05:07.165Z"
+    },
+    {
+      "testId": "AUTH-016",
+      "title": "正常登出",
+      "status": "PASS",
+      "duration": 12,
+      "error": null,
+      "timestamp": "2025-07-26T15:05:07.190Z"
+    }
+  ]
+}

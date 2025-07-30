@@ -1,0 +1,16 @@
+{
+  "totalSources": 0,
+  "completedSources": 0,
+  "currentSource": "",
+  "articlesFound": 0,
+  "articlesProcessed": 0,
+  "articlesPolished": 0,
+  "status": "idle",
+  "error": "",
+  "startTime": null,
+  "endTime": null,
+  "processedSources": [],
+  "languageProgress": [],
+  "canResume": false,
+  "articlesPerLanguage": 50
+}

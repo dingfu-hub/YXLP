@@ -1,0 +1,255 @@
+{
+  "timestamp": "2025-07-26T15:19:44.532Z",
+  "environment": {
+    "baseUrl": "http://localhost:3000",
+    "apiUrl": "http://localhost:3000/api",
+    "timeout": 30000
+  },
+  "summary": {
+    "total": 14,
+    "passed": 8,
+    "failed": 6,
+    "skipped": 0,
+    "passRate": "57.14",
+    "totalDuration": 239,
+    "bugs": [
+      {
+        "testId": "USER-001",
+        "title": "查看用户列表",
+        "error": "API call failed: Token has been revoked (Status: 401)",
+        "suite": "用户管理测试",
+        "errorType": "AUTHENTICATION_ERROR"
+      },
+      {
+        "testId": "USER-002",
+        "title": "用户列表分页",
+        "error": "API call failed: Token has been revoked",
+        "suite": "用户管理测试",
+        "errorType": "ASSERTION_ERROR"
+      },
+      {
+        "testId": "USER-003",
+        "title": "按用户名搜索",
+        "error": "Token has been revoked",
+        "suite": "用户管理测试",
+        "errorType": "ASSERTION_ERROR"
+      },
+      {
+        "testId": "USER-007",
+        "title": "创建新用户",
+        "error": "UNAUTHORIZED",
+        "suite": "用户管理测试",
+        "errorType": "ASSERTION_ERROR"
+      },
+      {
+        "testId": "USER-008",
+        "title": "创建重复用户名",
+        "error": "应该返回409错误",
+        "suite": "用户管理测试",
+        "errorType": "ASSERTION_ERROR"
+      },
+      {
+        "testId": "USER-009",
+        "title": "密码强度验证",
+        "error": "应该返回400错误",
+        "suite": "用户管理测试",
+        "errorType": "ASSERTION_ERROR"
+      }
+    ]
+  },
+  "results": [
+    {
+      "testId": "AUTH-001",
+      "title": "管理员正常登录",
+      "status": "PASS",
+      "duration": 18,
+      "error": null,
+      "details": {
+        "tokenLength": 571
+      },
+      "suite": "认证系统测试",
+      "timestamp": "2025-07-26T15:19:44.311Z"
+    },
+    {
+      "testId": "AUTH-002",
+      "title": "用户名不存在",
+      "status": "PASS",
+      "duration": 12,
+      "error": null,
+      "details": null,
+      "suite": "认证系统测试",
+      "timestamp": "2025-07-26T15:19:44.324Z"
+    },
+    {
+      "testId": "AUTH-003",
+      "title": "密码错误",
+      "status": "PASS",
+      "duration": 11,
+      "error": null,
+      "details": null,
+      "suite": "认证系统测试",
+      "timestamp": "2025-07-26T15:19:44.336Z"
+    },
+    {
+      "testId": "AUTH-004",
+      "title": "空用户名",
+      "status": "PASS",
+      "duration": 12,
+      "error": null,
+      "details": null,
+      "suite": "认证系统测试",
+      "timestamp": "2025-07-26T15:19:44.348Z"
+    },
+    {
+      "testId": "AUTH-005",
+      "title": "空密码",
+      "status": "PASS",
+      "duration": 11,
+      "error": null,
+      "details": null,
+      "suite": "认证系统测试",
+      "timestamp": "2025-07-26T15:19:44.359Z"
+    },
+    {
+      "testId": "AUTH-016",
+      "title": "正常登出",
+      "status": "PASS",
+      "duration": 23,
+      "error": null,
+      "details": null,
+      "suite": "认证系统测试",
+      "timestamp": "2025-07-26T15:19:44.382Z"
+    },
+    {
+      "testId": "AUTH-019",
+      "title": "未登录访问保护页面",
+      "status": "PASS",
+      "duration": 10,
+      "error": null,
+      "details": null,
+      "suite": "认证系统测试",
+      "timestamp": "2025-07-26T15:19:44.393Z"
+    },
+    {
+      "testId": "AUTH-020",
+      "title": "无效Token访问",
+      "status": "PASS",
+      "duration": 12,
+      "error": null,
+      "details": null,
+      "suite": "认证系统测试",
+      "timestamp": "2025-07-26T15:19:44.406Z"
+    },
+    {
+      "testId": "USER-001",
+      "title": "查看用户列表",
+      "status": "FAIL",
+      "duration": 21,
+      "error": "API call failed: Token has been revoked (Status: 401)",
+      "details": null,
+      "suite": "用户管理测试",
+      "timestamp": "2025-07-26T15:19:44.427Z"
+    },
+    {
+      "testId": "USER-002",
+      "title": "用户列表分页",
+      "status": "FAIL",
+      "duration": 20,
+      "error": "API call failed: Token has been revoked",
+      "details": null,
+      "suite": "用户管理测试",
+      "timestamp": "2025-07-26T15:19:44.448Z"
+    },
+    {
+      "testId": "USER-003",
+      "title": "按用户名搜索",
+      "status": "FAIL",
+      "duration": 21,
+      "error": "Token has been revoked",
+      "details": null,
+      "suite": "用户管理测试",
+      "timestamp": "2025-07-26T15:19:44.469Z"
+    },
+    {
+      "testId": "USER-007",
+      "title": "创建新用户",
+      "status": "FAIL",
+      "duration": 21,
+      "error": "UNAUTHORIZED",
+      "details": null,
+      "suite": "用户管理测试",
+      "timestamp": "2025-07-26T15:19:44.490Z"
+    },
+    {
+      "testId": "USER-008",
+      "title": "创建重复用户名",
+      "status": "FAIL",
+      "duration": 20,
+      "error": "应该返回409错误",
+      "details": null,
+      "suite": "用户管理测试",
+      "timestamp": "2025-07-26T15:19:44.510Z"
+    },
+    {
+      "testId": "USER-009",
+      "title": "密码强度验证",
+      "status": "FAIL",
+      "duration": 20,
+      "error": "应该返回400错误",
+      "details": null,
+      "suite": "用户管理测试",
+      "timestamp": "2025-07-26T15:19:44.530Z"
+    }
+  ],
+  "bugs": [
+    {
+      "testId": "USER-001",
+      "title": "查看用户列表",
+      "error": "API call failed: Token has been revoked (Status: 401)",
+      "suite": "用户管理测试",
+      "errorType": "AUTHENTICATION_ERROR"
+    },
+    {
+      "testId": "USER-002",
+      "title": "用户列表分页",
+      "error": "API call failed: Token has been revoked",
+      "suite": "用户管理测试",
+      "errorType": "ASSERTION_ERROR"
+    },
+    {
+      "testId": "USER-003",
+      "title": "按用户名搜索",
+      "error": "Token has been revoked",
+      "suite": "用户管理测试",
+      "errorType": "ASSERTION_ERROR"
+    },
+    {
+      "testId": "USER-007",
+      "title": "创建新用户",
+      "error": "UNAUTHORIZED",
+      "suite": "用户管理测试",
+      "errorType": "ASSERTION_ERROR"
+    },
+    {
+      "testId": "USER-008",
+      "title": "创建重复用户名",
+      "error": "应该返回409错误",
+      "suite": "用户管理测试",
+      "errorType": "ASSERTION_ERROR"
+    },
+    {
+      "testId": "USER-009",
+      "title": "密码强度验证",
+      "error": "应该返回400错误",
+      "suite": "用户管理测试",
+      "errorType": "ASSERTION_ERROR"
+    }
+  ],
+  "bugsByType": {
+    "AUTHENTICATION_ERROR": 1,
+    "ASSERTION_ERROR": 5
+  },
+  "recommendations": [
+    "建议检查认证系统和用户权限配置"
+  ]
+}

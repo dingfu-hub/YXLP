@@ -1,0 +1,84 @@
+{
+  "passed": 11,
+  "failed": 2,
+  "tests": [
+    {
+      "name": "文件测试: 新闻管理页面",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:32.874Z"
+    },
+    {
+      "name": "文件测试: RSS源管理页面",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:32.875Z"
+    },
+    {
+      "name": "文件测试: 侧边栏组件",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:32.876Z"
+    },
+    {
+      "name": "文件测试: 新闻采集器",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:32.876Z"
+    },
+    {
+      "name": "文件测试: 新闻数据管理",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:32.877Z"
+    },
+    {
+      "name": "JSON测试: 采集进度文件",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:32.877Z"
+    },
+    {
+      "name": "JSON测试: AI配置文件",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:32.878Z"
+    },
+    {
+      "name": "API测试: 新闻列表API",
+      "passed": false,
+      "message": "期望状态码 200，实际 403",
+      "timestamp": "2025-07-27T15:21:32.973Z"
+    },
+    {
+      "name": "API测试: RSS源管理API",
+      "passed": false,
+      "message": "期望状态码 200，实际 401",
+      "timestamp": "2025-07-27T15:21:33.010Z"
+    },
+    {
+      "name": "API测试: 采集进度API",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:33.044Z"
+    },
+    {
+      "name": "API测试: 管理后台首页",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:33.113Z"
+    },
+    {
+      "name": "API测试: 新闻管理页面",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:33.184Z"
+    },
+    {
+      "name": "API测试: RSS源管理页面",
+      "passed": true,
+      "message": "",
+      "timestamp": "2025-07-27T15:21:33.233Z"
+    }
+  ]
+}
