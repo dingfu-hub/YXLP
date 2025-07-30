@@ -4,6 +4,15 @@ import { useState, useMemo, useEffect } from 'react'
 import Link from 'next/link'
 import { allNewsArticles, newsCategories } from '@/data/news'
 
+// 辅助函数：获取多语言内容的文本
+const getLocalizedText = (content: any, language: string = 'zh'): string => {
+  if (typeof content === 'string') return content
+  if (typeof content === 'object' && content !== null) {
+    return content[language] || content['zh'] || content['en'] || Object.values(content)[0] || ''
+  }
+  return ''
+}
+
 export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
@@ -153,8 +162,8 @@ export default function NewsPage() {
                     <div className="flex gap-3">
                       <div className="w-16 h-16 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
                         <img
-                          src={`https://images.unsplash.com/photo-${1500000000000 + article.id}?w=100&h=100&fit=crop&auto=format&q=80`}
-                          alt={article.title}
+                          src={`/api/placeholder/100/100?text=${encodeURIComponent(getLocalizedText(article.title))}`}
+                          alt={getLocalizedText(article.title)}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement
@@ -168,7 +177,7 @@ export default function NewsPage() {
                           WebkitLineClamp: 2,
                           WebkitBoxOrient: 'vertical'
                         }}>
-                          {article.title}
+                          {getLocalizedText(article.title)}
                         </h3>
                         <div className="flex items-center mt-1 text-xs text-gray-500">
                           <span>{formatDate(article.publishDate)}</span>
@@ -236,8 +245,8 @@ export default function NewsPage() {
                         {/* 文章图片 */}
                         <div className="w-48 h-32 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
                           <img
-                            src={`https://images.unsplash.com/photo-${1500000000000 + article.id}?w=300&h=200&fit=crop&auto=format&q=80`}
-                            alt={article.title}
+                            src={`/api/placeholder/300/200?text=${encodeURIComponent(getLocalizedText(article.title))}`}
+                            alt={getLocalizedText(article.title)}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement
@@ -261,7 +270,7 @@ export default function NewsPage() {
                             WebkitLineClamp: 2,
                             WebkitBoxOrient: 'vertical'
                           }}>
-                            {article.title}
+                            {getLocalizedText(article.title)}
                           </h3>
 
                           <p className="text-gray-600 mb-4 overflow-hidden" style={{
@@ -269,7 +278,7 @@ export default function NewsPage() {
                             WebkitLineClamp: 2,
                             WebkitBoxOrient: 'vertical'
                           }}>
-                            {article.summary}
+                            {getLocalizedText(article.summary)}
                           </p>
 
                           <div className="flex items-center justify-between">
