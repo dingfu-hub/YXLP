@@ -13,25 +13,25 @@ export default function HomePage() {
 
   const heroSlides = [
     {
-      title: "引领未来商业创新",
-      subtitle: "YXLP - 您的数字化转型伙伴",
-      description: "专注于为企业提供全方位的数字化解决方案，助力企业在数字时代实现跨越式发展",
+      title: t('hero.slide1.title', { defaultValue: "优质产品，卓越服务" }),
+      subtitle: t('hero.slide1.subtitle', { defaultValue: "品质保证，信赖之选" }),
+      description: t('hero.slide1.description', { defaultValue: "严格的质量控制体系，完善的售后服务网络，为客户提供最优质的产品和服务体验" }),
       image: "/api/placeholder/1200/600",
-      cta: "了解更多"
+      cta: t('hero.slide1.cta', { defaultValue: "查看产品" })
     },
     {
-      title: "优质产品，卓越服务",
-      subtitle: "品质保证，信赖之选",
-      description: "严格的质量控制体系，完善的售后服务网络，为客户提供最优质的产品和服务体验",
+      title: t('hero.slide2.title', { defaultValue: "引领未来商业创新" }),
+      subtitle: t('hero.slide2.subtitle', { defaultValue: "YXLP - 您的数字化转型伙伴" }),
+      description: t('hero.slide2.description', { defaultValue: "专注于为企业提供全方位的数字化解决方案，助力企业在数字时代实现跨越式发展" }),
       image: "/api/placeholder/1200/600",
-      cta: "查看产品"
+      cta: t('hero.slide2.cta', { defaultValue: "了解更多" })
     },
     {
-      title: "全球合作，共创未来",
-      subtitle: "携手共进，合作共赢",
-      description: "与全球优秀企业建立战略合作关系，共同开拓市场，实现互利共赢的发展目标",
+      title: t('hero.slide3.title', { defaultValue: "全球合作，共创未来" }),
+      subtitle: t('hero.slide3.subtitle', { defaultValue: "携手共进，合作共赢" }),
+      description: t('hero.slide3.description', { defaultValue: "与全球优秀企业建立战略合作关系，共同开拓市场，实现互利共赢的发展目标" }),
       image: "/api/placeholder/1200/600",
-      cta: "成为合伙人"
+      cta: t('hero.slide3.cta', { defaultValue: "成为合伙人" })
     }
   ]
 
@@ -56,20 +56,20 @@ export default function HomePage() {
             </Link>
 
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-blue-600 font-medium">首页</Link>
-              <Link href="/products" className="text-gray-600 hover:text-gray-900 transition-colors">产品中心</Link>
-              <Link href="/categories" className="text-gray-600 hover:text-gray-900 transition-colors">产品分类</Link>
-              <Link href="/news" className="text-gray-600 hover:text-gray-900 transition-colors">新闻资讯</Link>
-              <Link href="/distributors" className="text-gray-600 hover:text-gray-900 transition-colors">合作伙伴</Link>
-              <Link href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">关于我们</Link>
-              <Link href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">联系我们</Link>
+              <Link href="/" className="text-blue-600 font-medium">{t('nav.home', { defaultValue: "首页" })}</Link>
+              <Link href="/products" className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.products', { defaultValue: "产品中心" })}</Link>
+              <Link href="/categories" className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.categories', { defaultValue: "产品分类" })}</Link>
+              <Link href="/news" className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.news', { defaultValue: "新闻资讯" })}</Link>
+              <Link href="/distributors" className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.partners', { defaultValue: "合作伙伴" })}</Link>
+              <Link href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.about', { defaultValue: "关于我们" })}</Link>
+              <Link href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.contact', { defaultValue: "联系我们" })}</Link>
             </div>
 
             <div className="flex items-center space-x-4">
               <LanguageSwitcher variant="compact" showFlag={true} showNativeName={false} />
-              <Link href="/login" className="text-gray-600 hover:text-gray-900 transition-colors">登录</Link>
+              <Link href="/login" className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.login', { defaultValue: "登录" })}</Link>
               <Link href="/register" className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                免费注册
+                {t('nav.register', { defaultValue: "免费注册" })}
               </Link>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function HomePage() {
             </Link>
             <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors inline-flex items-center">
               <PlayIcon className="mr-2 h-5 w-5" />
-              观看视频
+              {t('hero.watchVideo', { defaultValue: "观看视频" })}
             </button>
           </div>
         </div>
@@ -138,9 +138,9 @@ export default function HomePage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">为什么选择YXLP服装</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t('advantages.title', { defaultValue: "为什么选择YXLP服装" })}</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              专注服装领域多年，为客户提供最优质的服装产品和专业的时尚搭配服务
+              {t('advantages.subtitle', { defaultValue: "专注服装领域多年，为客户提供最优质的服装产品和专业的时尚搭配服务" })}
             </p>
           </div>
 
