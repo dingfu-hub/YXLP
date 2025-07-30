@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPublishedNews, getNewsByCategory } from '@/data/news'
-import { NewsCategory } from '@/types/news'
+import { NewsCategory, SupportedLanguage } from '@/types/news'
+import { getLocalizedContent } from '@/lib/i18n'
 
 // 公共新闻API - 不需要认证
 export async function GET(request: NextRequest) {
@@ -10,6 +11,7 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '20')
     const search = searchParams.get('search')
+    const locale = searchParams.get('locale') as SupportedLanguage || 'zh'
 
     // 获取已发布的新闻
     let articles = getPublishedNews()
@@ -19,15 +21,26 @@ export async function GET(request: NextRequest) {
       articles = articles.filter(article => article.category === category)
     }
 
+    // 过滤有对应语言内容的新闻
+    articles = articles.filter(article => {
+      const title = getLocalizedContent(article.title, locale)
+      const content = getLocalizedContent(article.content, locale)
+      return title && content // 确保有对应语言的标题和内容
+    })
+
     // 搜索功能
     if (search) {
       const searchLower = search.toLowerCase()
-      articles = articles.filter(article =>
-        article.title.toLowerCase().includes(searchLower) ||
-        article.summary.toLowerCase().includes(searchLower) ||
-        article.content.toLowerCase().includes(searchLower) ||
-        article.keywords?.some(keyword => keyword.toLowerCase().includes(searchLower))
-      )
+      articles = articles.filter(article => {
+        const title = getLocalizedContent(article.title, locale)
+        const summary = getLocalizedContent(article.summary, locale)
+        const content = getLocalizedContent(article.content, locale)
+
+        return title.toLowerCase().includes(searchLower) ||
+               summary.toLowerCase().includes(searchLower) ||
+               content.toLowerCase().includes(searchLower) ||
+               article.keywords?.some(keyword => keyword.toLowerCase().includes(searchLower))
+      })
     }
 
     // 分页

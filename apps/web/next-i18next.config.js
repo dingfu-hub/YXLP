@@ -1,58 +1,36 @@
 module.exports = {
   i18n: {
-    // 默认语言
-    defaultLocale: 'en',
-    
-    // 支持的语言列表
+    // 默认语言 - 检测浏览器语言失败时的回退语言
+    defaultLocale: 'zh',
+
+    // 支持的语言列表 - 对应URL路径
     locales: [
-      'en',    // 英语
-      'zh',    // 中文简体
-      'zh-TW', // 中文繁体
-      'es',    // 西班牙语
-      'fr',    // 法语
-      'de',    // 德语
-      'ja',    // 日语
-      'ko',    // 韩语
-      'ar',    // 阿拉伯语
-      'pt',    // 葡萄牙语
-      'ru',    // 俄语
-      'it',    // 意大利语
+      'zh',    // 中文简体 - /zh/
+      'en',    // 英语 - /en/
+      'ja',    // 日语 - /ja/
+      'ko',    // 韩语 - /ko/
+      'es',    // 西班牙语 - /es/
+      'fr',    // 法语 - /fr/
+      'de',    // 德语 - /de/
+      'it',    // 意大利语 - /it/
+      'pt',    // 葡萄牙语 - /pt/
+      'ru',    // 俄语 - /ru/
     ],
 
-    // 语言检测配置
+    // 语言检测配置 - 自动检测用户浏览器语言
     localeDetection: true,
 
-    // 域名配置（用于多域名部署）
-    domains: [
-      {
-        domain: 'yxlp.com',
-        defaultLocale: 'en',
-      },
-      {
-        domain: 'yxlp.cn',
-        defaultLocale: 'zh',
-      },
-      {
-        domain: 'yxlp.es',
-        defaultLocale: 'es',
-      },
-      {
-        domain: 'yxlp.fr',
-        defaultLocale: 'fr',
-      },
-      {
-        domain: 'yxlp.de',
-        defaultLocale: 'de',
-      },
-      {
-        domain: 'yxlp.jp',
-        defaultLocale: 'ja',
-      },
-      {
-        domain: 'yxlp.kr',
-        defaultLocale: 'ko',
-      },
-    ],
+    // 域名配置（可选，用于多域名部署）
+    // domains: [
+    //   {
+    //     domain: 'yxlp.com',
+    //     defaultLocale: 'en',
+    //   },
+    //   {
+    //     domain: 'yxlp.cn',
+    //     defaultLocale: 'zh',
+    //   }
+    // ],
   },
 
   // 翻译文件配置
@@ -75,12 +53,10 @@ module.exports = {
     'seo',
   ],
 
-  // 回退语言
+  // 回退语言配置
   fallbackLng: {
-    'zh-TW': ['zh', 'en'],
-    'zh-HK': ['zh-TW', 'zh', 'en'],
-    'zh-SG': ['zh', 'en'],
-    default: ['en'],
+    // 不支持的语言回退到英文，英文不可用时回退到中文
+    default: ['en', 'zh'],
   },
 
   // 调试模式

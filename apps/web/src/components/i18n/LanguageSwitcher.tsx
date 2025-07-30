@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
 import { ChevronDown, Globe, Check } from 'lucide-react'
 import { useLanguage } from '@/hooks/useTranslation'
 
@@ -20,6 +21,8 @@ export default function LanguageSwitcher({
   const { language, currentLanguage, setLanguage, availableLanguages } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -33,7 +36,23 @@ export default function LanguageSwitcher({
   }, [])
 
   const handleLanguageChange = (langCode: string) => {
-    setLanguage(langCode)
+    // 构建新的URL路径
+    const currentLocale = pathname.split('/')[1]
+    let newPath = pathname
+
+    if (currentLocale && availableLanguages.some(lang => lang.code === currentLocale)) {
+      // 替换现有的语言代码
+      newPath = pathname.replace(`/${currentLocale}`, `/${langCode}`)
+    } else {
+      // 添加语言代码前缀
+      newPath = `/${langCode}${pathname}`
+    }
+
+    // 设置Cookie以持久化语言偏好
+    document.cookie = `preferred-language=${langCode}; max-age=${60 * 60 * 24 * 365}; path=/; samesite=lax`
+
+    // 跳转到新的语言路径
+    router.push(newPath)
     setIsOpen(false)
   }
 

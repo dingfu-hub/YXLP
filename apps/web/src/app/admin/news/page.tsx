@@ -6,20 +6,22 @@ import { NewsArticle, NewsStatus, SupportedLanguage } from '@/types/news'
 import CrawlProgressModal from '@/components/CrawlProgressModal'
 import LanguageSelector from '@/components/LanguageSelector'
 import { SUPPORTED_LANGUAGES, getLocalizedContent } from '@/lib/i18n'
+import { useTranslation } from '@/hooks/useTranslation'
 
 
-
-// 状态选项
-const statusOptions = [
-  { value: 'all', label: '全部状态' },
-  { value: 'draft', label: '草稿' },
-  { value: 'published', label: '已发布' },
-  { value: 'archived', label: '已归档' },
-  { value: 'processing', label: '处理中' }
-]
 
 export default function NewsListPage() {
   const { user } = useAdmin()
+  const { t } = useTranslation()
+
+  // 状态选项
+  const statusOptions = [
+    { value: 'all', label: t('common.filter') + ' - ' + t('common.all') },
+    { value: 'draft', label: t('common.draft') },
+    { value: 'published', label: t('common.published') },
+    { value: 'archived', label: t('common.archived') },
+    { value: 'processing', label: t('common.processing') }
+  ]
   const [articles, setArticles] = useState<NewsArticle[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -378,7 +380,7 @@ export default function NewsListPage() {
   }, [user, fetchNews])
 
   if (!user) {
-    return <div>请先登录</div>
+    return <div>{t('auth.pleaseLogin')}</div>
   }
 
   return (
@@ -387,11 +389,11 @@ export default function NewsListPage() {
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center space-x-6">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">新闻管理</h1>
-            <p className="text-gray-600 mt-1">管理新闻文章，支持采集、AI润色等功能</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t('admin.news.title')}</h1>
+            <p className="text-gray-600 mt-1">{t('admin.news.description')}</p>
           </div>
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-gray-600">显示语言:</span>
+            <span className="text-sm text-gray-600">{t('admin.news.displayLanguage')}:</span>
             <LanguageSelector
               selectedLanguage={selectedLanguage}
               onLanguageChange={setSelectedLanguage}
@@ -404,13 +406,13 @@ export default function NewsListPage() {
             onClick={handleCrawl}
             className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
           >
-            启动采集
+            {t('admin.news.startCrawl')}
           </button>
           <a
             href="/admin/news/create"
             className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors"
           >
-            创建新闻
+            {t('admin.news.createNews')}
           </a>
         </div>
       </div>
@@ -628,16 +630,16 @@ export default function NewsListPage() {
                               href={`/admin/news/${article.id}/edit`}
                               className="text-blue-600 hover:text-blue-800 text-sm"
                             >
-                              编辑
+                              {t('admin.news.edit')}
                             </a>
 
                             {/* 显示翻译按钮 - 总是显示，让用户可以查看中文翻译 */}
                             <button
                               onClick={() => handleTranslateToChineseModal(article.id)}
                               className="text-purple-600 hover:text-purple-800 text-sm"
-                              title="查看中文翻译"
+                              title={t('admin.news.viewChineseTranslation')}
                             >
-                              中文翻译
+                              {t('admin.news.translateToChinese')}
                             </button>
 
                             {!article.aiProcessed && (
@@ -645,7 +647,7 @@ export default function NewsListPage() {
                                 onClick={() => handleAIProcess(article.id)}
                                 className="text-green-600 hover:text-green-800 text-sm"
                               >
-                                AI润色
+                                {t('admin.news.aiPolish')}
                               </button>
                             )}
 
@@ -653,7 +655,7 @@ export default function NewsListPage() {
                               onClick={() => handleDelete(article.id)}
                               className="text-red-600 hover:text-red-800 text-sm"
                             >
-                              删除
+                              {t('admin.news.delete')}
                             </button>
                           </div>
                         </div>
@@ -712,7 +714,7 @@ export default function NewsListPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-4xl mx-4 max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-gray-900">中文翻译</h2>
+              <h2 className="text-xl font-bold text-gray-900">{t('admin.news.chineseTranslation')}</h2>
               <button
                 onClick={() => setTranslationModal({ isOpen: false, newsId: '', title: '', content: '', summary: '', isTranslating: false })}
                 className="text-gray-500 hover:text-gray-700"
@@ -727,14 +729,14 @@ export default function NewsListPage() {
               {translationModal.isTranslating && (
                 <div className="flex items-center justify-center py-8">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                  <span className="ml-3 text-gray-600">正在翻译中...</span>
+                  <span className="ml-3 text-gray-600">{t('admin.news.translating')}</span>
                 </div>
               )}
 
               {!translationModal.isTranslating && (
                 <>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">标题翻译</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">{t('admin.news.titleTranslation')}</label>
                     <div className="p-3 bg-gray-50 border rounded-md">
                       {translationModal.title}
                     </div>
@@ -742,7 +744,7 @@ export default function NewsListPage() {
 
                   {translationModal.summary && (
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">摘要翻译</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">{t('admin.news.summaryTranslation')}</label>
                       <div className="p-3 bg-gray-50 border rounded-md">
                         {translationModal.summary}
                       </div>

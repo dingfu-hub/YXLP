@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { NewsCategory, NewsStatus, AIModel, SupportedLanguage, MultiLanguageContent, AIPolishProgress } from '@/types/news'
 import { aiPolishService, AI_MODELS } from '@/lib/ai-polish'
 import { SUPPORTED_LANGUAGES, createMultiLanguageContent, getLocalizedContent } from '@/lib/i18n'
+import useAutoTranslation from '@/hooks/useAutoTranslation'
 
 export default function CreateNewsPage() {
   const router = useRouter()
@@ -40,13 +41,26 @@ export default function CreateNewsPage() {
   // 系统支持的所有语言（自动生成所有语言版本）
   const ALL_LANGUAGES: SupportedLanguage[] = ['zh', 'en', 'ja', 'ko', 'es', 'fr', 'de', 'it', 'pt', 'ru']
 
+  // 自动翻译Hook
+  const {
+    isTranslating,
+    progress: translationProgress,
+    error: translationError,
+    results: translationResults,
+    translateFields,
+    resetTranslation
+  } = useAutoTranslation({
+    sourceLanguage: 'zh',
+    targetLanguages: ALL_LANGUAGES.filter(lang => lang !== 'zh')
+  })
+
   const categories: { value: NewsCategory; label: string }[] = [
     { value: 'fashion', label: '时尚' },
     { value: 'underwear', label: '内衣' },
     { value: 'business', label: '商业' }
   ]
 
-  // AI润色功能 - 自动生成所有语言版本
+  // AI润色功能 - 润色中文内容后自动翻译成所有语言
   const handleAIPolish = async () => {
     if (!formData.title || !formData.content || !formData.summary) {
       alert('请先填写标题、内容和摘要')
@@ -55,11 +69,14 @@ export default function CreateNewsPage() {
 
     setIsPolishing(true)
     setPolishCompleted(false)
-    setPolishProgress({ total: ALL_LANGUAGES.length * 3, completed: 0, status: 'processing' })
+    resetTranslation() // 重置翻译状态
+    setPolishProgress({ total: 2, completed: 0, status: 'processing' })
 
     try {
-      // 调用AI润色API - 生成所有语言版本
-      const response = await fetch('/api/admin/news/ai-polish', {
+      // 第一步：AI润色中文内容
+      setPolishProgress({ total: 2, completed: 0, status: 'processing' })
+
+      const polishResponse = await fetch('/api/admin/news/ai-polish', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,45 +87,43 @@ export default function CreateNewsPage() {
           content: formData.content,
           summary: formData.summary,
           aiModel: aiModel,
-          targetLanguages: ALL_LANGUAGES // 生成所有语言版本
+          targetLanguages: ['zh'] // 只润色中文版本
         })
       })
 
-      if (!response.ok) {
-        const error = await response.json()
+      if (!polishResponse.ok) {
+        const error = await polishResponse.json()
         throw new Error(error.error || 'AI润色失败')
       }
 
-      // 获取润色结果
-      const result = await response.json()
+      const polishResult = await polishResponse.json()
 
-      // 实时进度更新
-      const totalTasks = ALL_LANGUAGES.length * 3
-      let completed = 0
+      // 获取润色后的中文内容
+      const polishedZhContent = {
+        title: getLocalizedContent(polishResult.data.title, 'zh'),
+        content: getLocalizedContent(polishResult.data.content, 'zh'),
+        summary: getLocalizedContent(polishResult.data.summary, 'zh')
+      }
 
-      const progressInterval = setInterval(() => {
-        completed += Math.floor(Math.random() * 3) + 1 // 随机增加进度
-        const currentCompleted = Math.min(completed, totalTasks)
+      setPolishProgress({ total: 2, completed: 1, status: 'processing' })
 
-        setPolishProgress({
-          total: totalTasks,
-          completed: currentCompleted,
-          status: currentCompleted >= totalTasks ? 'completed' : 'processing'
-        })
+      // 第二步：自动翻译润色后的内容到所有语言
+      const translationResult = await translateFields(polishedZhContent, false)
 
-        if (currentCompleted >= totalTasks) {
-          clearInterval(progressInterval)
-          setPolishedContent({
-            title: result.data.title,
-            content: result.data.content,
-            summary: result.data.summary
-          })
-          setPolishCompleted(true)
-        }
-      }, 200) // 每200ms更新一次进度，更流畅
+      // 构建多语言内容对象
+      const multiLanguageContent = {
+        title: translationResult.results.title || createMultiLanguageContent(polishedZhContent.title, 'zh'),
+        content: translationResult.results.content || createMultiLanguageContent(polishedZhContent.content, 'zh'),
+        summary: translationResult.results.summary || createMultiLanguageContent(polishedZhContent.summary, 'zh')
+      }
+
+      setPolishedContent(multiLanguageContent)
+      setPolishProgress({ total: 2, completed: 2, status: 'completed' })
+      setPolishCompleted(true)
+
     } catch (error) {
-      console.error('AI润色失败:', error)
-      const errorMessage = error instanceof Error ? error.message : 'AI润色失败'
+      console.error('AI润色和翻译失败:', error)
+      const errorMessage = error instanceof Error ? error.message : 'AI润色和翻译失败'
       setPolishProgress(prev => ({ ...prev, status: 'failed', error: errorMessage }))
 
       // 显示详细错误信息
@@ -116,7 +131,7 @@ export default function CreateNewsPage() {
         ? '网络连接失败，请检查网络连接后重试'
         : errorMessage
 
-      alert(`AI润色失败: ${errorDetails}\n\n如果问题持续存在，请联系技术支持。`)
+      alert(`AI润色和翻译失败: ${errorDetails}\n\n如果问题持续存在，请联系技术支持。`)
     } finally {
       setIsPolishing(false)
     }
@@ -263,7 +278,7 @@ export default function CreateNewsPage() {
               </button>
 
               {/* 进度条 */}
-              {polishProgress.status === 'processing' && (
+              {(polishProgress.status === 'processing' || isTranslating) && (
                 <div className="mt-4 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center">
@@ -271,7 +286,11 @@ export default function CreateNewsPage() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      <span className="text-lg font-semibold text-blue-900">AI智能润色进行中</span>
+                      <span className="text-lg font-semibold text-blue-900">
+                        {polishProgress.completed === 0 ? 'AI智能润色中...' :
+                         polishProgress.completed === 1 ? '自动翻译中...' :
+                         'AI润色和翻译进行中'}
+                      </span>
                     </div>
                     <span className="text-sm font-medium text-blue-700 bg-white px-3 py-1 rounded-full">
                       {polishProgress.completed} / {polishProgress.total}
@@ -292,9 +311,22 @@ export default function CreateNewsPage() {
                   </div>
 
                   <div className="text-sm text-blue-600 space-y-1">
-                    <p>🌍 正在生成 {ALL_LANGUAGES.length} 种语言版本</p>
-                    <p>📝 包含标题、内容、摘要的专业润色</p>
-                    <p>⚡ 预计完成时间: {Math.ceil((polishProgress.total - polishProgress.completed) * 0.5)} 秒</p>
+                    {polishProgress.completed === 0 && (
+                      <>
+                        <p>🤖 正在使用{aiModel}模型润色中文内容</p>
+                        <p>📝 优化标题、内容、摘要的表达</p>
+                      </>
+                    )}
+                    {polishProgress.completed === 1 && (
+                      <>
+                        <p>🌍 正在翻译成 {ALL_LANGUAGES.length - 1} 种语言</p>
+                        <p>🔄 自动生成多语言版本</p>
+                        {isTranslating && (
+                          <p>📊 翻译进度: {translationProgress}%</p>
+                        )}
+                      </>
+                    )}
+                    <p>⚡ 预计完成时间: {Math.ceil((polishProgress.total - polishProgress.completed) * 15)} 秒</p>
                   </div>
                 </div>
               )}
@@ -306,8 +338,11 @@ export default function CreateNewsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div>
-                      <p className="font-semibold">✅ AI润色完成！</p>
-                      <p className="text-sm">已成功生成 {ALL_LANGUAGES.length} 种语言的专业版本</p>
+                      <p className="font-semibold">✨ AI润色和翻译完成！</p>
+                      <p className="text-sm">已生成 {ALL_LANGUAGES.length} 种语言版本，现在可以创建新闻了</p>
+                      <p className="text-xs mt-1 text-green-600">
+                        🌍 支持语言: 中文、English、日本語、한국어、Español、Français、Deutsch、Italiano、Português、Русский
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -320,8 +355,8 @@ export default function CreateNewsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div>
-                      <p className="font-semibold">❌ AI润色失败</p>
-                      <p className="text-sm">{polishProgress.error || '未知错误，请重试'}</p>
+                      <p className="font-semibold">❌ AI润色和翻译失败</p>
+                      <p className="text-sm">{polishProgress.error || translationError || '未知错误，请重试'}</p>
                     </div>
                   </div>
                 </div>

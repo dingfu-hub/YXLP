@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { NewsCategory, NewsStatus, NewsArticle } from '@/types/news'
 import { getLocalizedContent } from '@/lib/i18n'
+import { useTranslation } from '@/hooks/useTranslation'
 
 export default function EditNewsPage() {
   const router = useRouter()
   const params = useParams()
+  const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
   const [initialLoading, setInitialLoading] = useState(true)
   const [formData, setFormData] = useState({
@@ -180,7 +182,7 @@ export default function EditNewsPage() {
       <div className="max-w-4xl mx-auto py-8 px-4">
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">编辑新闻</h1>
+            <h1 className="text-2xl font-bold text-gray-900">{t('admin.news.edit')}</h1>
             <div className="flex items-center space-x-4">
               {showTranslation && (
                 <button
@@ -189,14 +191,14 @@ export default function EditNewsPage() {
                   disabled={isTranslating}
                   className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 disabled:opacity-50"
                 >
-                  {isTranslating ? '翻译中...' : '查看中文翻译'}
+                  {isTranslating ? t('admin.news.translating') : t('admin.news.viewChineseTranslation')}
                 </button>
               )}
               <button
                 onClick={() => router.back()}
                 className="text-gray-600 hover:text-gray-900"
               >
-                返回
+                {t('buttons.back')}
               </button>
             </div>
           </div>
@@ -204,20 +206,20 @@ export default function EditNewsPage() {
           {/* 翻译结果显示 */}
           {translatedContent.title && (
             <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <h3 className="text-lg font-medium text-blue-900 mb-3">中文翻译参考</h3>
+              <h3 className="text-lg font-medium text-blue-900 mb-3">{t('admin.news.translationReference')}</h3>
               <div className="space-y-3">
                 <div>
-                  <label className="block text-sm font-medium text-blue-700 mb-1">标题翻译</label>
+                  <label className="block text-sm font-medium text-blue-700 mb-1">{t('admin.news.titleTranslation')}</label>
                   <p className="text-blue-800 bg-white p-2 rounded border">{translatedContent.title}</p>
                 </div>
                 {translatedContent.summary && (
                   <div>
-                    <label className="block text-sm font-medium text-blue-700 mb-1">摘要翻译</label>
+                    <label className="block text-sm font-medium text-blue-700 mb-1">{t('admin.news.summaryTranslation')}</label>
                     <p className="text-blue-800 bg-white p-2 rounded border">{translatedContent.summary}</p>
                   </div>
                 )}
                 <div>
-                  <label className="block text-sm font-medium text-blue-700 mb-1">内容翻译</label>
+                  <label className="block text-sm font-medium text-blue-700 mb-1">{t('admin.news.contentTranslation')}</label>
                   <div className="text-blue-800 bg-white p-2 rounded border max-h-40 overflow-y-auto whitespace-pre-wrap">
                     {translatedContent.content}
                   </div>

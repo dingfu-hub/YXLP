@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAdmin } from '@/contexts/AdminContext'
 import { SIDEBAR_MENU, filterMenuByPermissions, MenuItem } from '@/types/admin'
+import { useTranslation } from '@/hooks/useTranslation'
 
 interface SidebarProps {
   isOpen: boolean
@@ -14,7 +15,14 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname()
   const { permissions } = useAdmin()
+  const { t } = useTranslation()
   const [expandedItems, setExpandedItems] = useState<string[]>([])
+
+  // 获取国际化的菜单标签
+  const getMenuLabel = (item: MenuItem): string => {
+    const labelKey = `admin.sidebar.${item.id}`
+    return t(labelKey, { defaultValue: item.label })
+  }
 
   // 过滤有权限的菜单项
   const filteredMenu = filterMenuByPermissions(SIDEBAR_MENU, permissions)
@@ -80,7 +88,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           >
             <span className="flex-1 flex items-center">
               <MenuIcon name={item.icon} className={`${iconSize} mr-3`} />
-              {item.label}
+              {getMenuLabel(item)}
             </span>
             <svg
               className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
@@ -105,7 +113,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             }`}
           >
             <MenuIcon name={item.icon} className={`${iconSize} mr-3 flex-shrink-0`} />
-            <span className="truncate">{item.label}</span>
+            <span className="truncate">{getMenuLabel(item)}</span>
           </Link>
         )}
 
