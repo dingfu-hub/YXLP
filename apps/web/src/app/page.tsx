@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ChevronRightIcon, PlayIcon } from '@heroicons/react/24/outline'
 import LanguageSwitcher from '@/components/i18n/LanguageSwitcher'
 import { useTranslation } from '@/hooks/useTranslation'
+import { ProductImage, PlaceholderImage } from '@/components/ui/ImageWithFallback'
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -216,9 +217,14 @@ export default function HomePage() {
             ].map((product, index) => (
               <div key={index} className="group cursor-pointer">
                 <div className="relative overflow-hidden rounded-lg shadow-lg">
-                  <div className="h-64 bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-500">产品图片</span>
-                  </div>
+                  <ProductImage
+                    src={product.image}
+                    alt={product.name}
+                    width={400}
+                    height={256}
+                    className="w-full h-64 object-cover"
+                    productName={product.name}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="absolute bottom-4 left-4 text-white">
                       <span className="text-sm bg-blue-600 px-2 py-1 rounded">{product.category}</span>
@@ -347,9 +353,14 @@ export default function HomePage() {
               </div>
             </div>
             <div className="relative">
-              <div className="h-96 bg-gray-200 rounded-lg flex items-center justify-center">
-                <span className="text-gray-500">公司图片</span>
-              </div>
+              <PlaceholderImage
+                width={600}
+                height={384}
+                text="YXLP 企业形象"
+                className="w-full h-96 object-cover rounded-lg"
+                bgColor="f8fafc"
+                textColor="475569"
+              />
             </div>
           </div>
         </div>
