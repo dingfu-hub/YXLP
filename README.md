@@ -1,228 +1,84 @@
-# YXLP Fashion Export Platform
+# 🚀 YXLP 企业级服装出口电商平台
 
-🌟 **A comprehensive B2B/B2C platform for fashion export business with 5000+ test products**
+## 📖 项目简介
 
-![Platform Preview](https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=400&fit=crop)
+YXLP是一个现代化的企业级服装出口电商平台，集成了多语言新闻系统、产品管理、用户管理等核心功能。
 
-## ✨ Features
+## ⚡ 一键启动（推荐给团队成员）
 
-### 🛍️ **Complete E-commerce System**
-- **5000+ Test Products** with real images and detailed information
-- **Advanced Search & Filtering** by category, price, color, size, brand
-- **Product Catalog** with pagination and sorting options
-- **Category Management** with grid/list view options
-- **Shopping Cart** functionality (coming soon)
-
-### 🏢 **B2B Portal**
-- **Distributor Application System** with comprehensive forms
-- **Bulk Order Management** with minimum quantity requirements
-- **Pricing Tiers** for different customer levels
-- **Business Account Management**
-
-### 📱 **Modern Frontend**
-- **React 18 + TypeScript** for type-safe development
-- **Tailwind CSS** for responsive design
-- **Real Image Integration** with intelligent fallback system
-- **Mobile-First Design** optimized for all devices
-- **Fast Loading** with optimized image handling
-
-### 🔧 **Admin Dashboard**
-- **News Management System** with AI-powered content processing
-- **Test Data Management** with generation and export tools
-- **User Management** with role-based access control
-- **Analytics Dashboard** with comprehensive statistics
-
-### 🌐 **Multi-language Support**
-- Chinese, English, Japanese, Korean, Spanish, French, German, Italian, Portuguese, Russian
-- **i18n Ready** infrastructure for easy localization
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js 18+
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/yxlp-fashion-platform.git
-cd yxlp-fashion-platform
+# 克隆项目后，运行这一条命令即可
+npm run quick-start
 ```
 
-2. **Install dependencies**
-```bash
-npm install
-```
+## 📋 环境要求
 
-3. **Start the development server**
-```bash
-cd apps/web-react
-npm start
-```
+- **Node.js** >= 18.0.0 ([下载地址](https://nodejs.org/))
+- **Git** ([下载地址](https://git-scm.com/))
 
-4. **Open your browser**
-- Frontend: http://localhost:3001
-- Admin Panel: http://localhost:3001/admin
+**不需要安装Docker、PostgreSQL等复杂服务！**
 
-## 📊 Test Data
+## 🌐 访问地址
 
-The platform comes with **comprehensive test data**:
-- **5,000 Products** across 8 categories
-- **1,000 Customers** with realistic profiles
-- **2,000 Orders** with complete transaction data
-- **Real Images** from Unsplash with smart fallbacks
+启动成功后：
+- **前端应用**: http://localhost:3000
+- **管理后台**: http://localhost:3000/admin  
+- **API接口**: http://localhost:3001
 
-### Data Management
-Access the admin panel at `/admin/data` to:
-- View data statistics
-- Generate new test data
-- Export data for development
-- Clear and reset data
+## 🔑 默认账号
 
-## 🏗️ Project Structure
+- 管理员: `admin` / `admin123`
+
+## 📁 项目结构
 
 ```
 yxlp/
 ├── apps/
-│   ├── web-react/           # Main React frontend
-│   │   ├── src/
-│   │   │   ├── components/  # Reusable UI components
-│   │   │   ├── pages/       # Page components
-│   │   │   ├── services/    # API and data services
-│   │   │   ├── types/       # TypeScript definitions
-│   │   │   └── utils/       # Utility functions
-│   │   └── public/          # Static assets
-│   ├── admin/               # Admin dashboard
-│   ├── api/                 # Backend API
-│   └── web/                 # Legacy web app
-├── packages/
-│   ├── config/              # Shared configuration
-│   ├── types/               # Shared TypeScript types
-│   ├── ui/                  # Shared UI components
-│   └── utils/               # Shared utilities
-├── docs/                    # Documentation
-└── tests/                   # Test suites
+│   ├── web/              # 前端应用 (Next.js)
+│   │   ├── src/          # 源代码
+│   │   ├── data/         # SQLite数据库
+│   │   └── .env.local    # 环境配置
+│   └── api/              # 后端API (NestJS)
+│       ├── src/          # 源代码  
+│       └── .env.local    # 环境配置
+├── 项目启动指南.md        # 详细启动说明
+├── 账号密码.md           # 各种账号信息
+└── 反思文档.md           # 问题解决记录
 ```
 
-## 🎨 Key Pages
+## 🛠️ 开发命令
 
-### 🏠 **Homepage** (`/`)
-- Hero section with featured products
-- Category showcase
-- Latest news and updates
-- Company highlights
-
-### 🛍️ **Products** (`/products`)
-- Complete product catalog
-- Advanced filtering and search
-- Pagination and sorting
-- Product cards with images and details
-
-### 📂 **Categories** (`/categories`)
-- Category grid and list views
-- Product count per category
-- Category-specific filtering
-
-### 🤝 **For Distributors** (`/distributors`)
-- B2B application portal
-- Partnership information
-- Success stories and testimonials
-- Application form with validation
-
-### ℹ️ **About Us** (`/about`)
-- Company history and mission
-- Team member profiles
-- Manufacturing capabilities
-- Quality certifications
-
-### 📞 **Contact** (`/contact`)
-- Contact form with validation
-- Multiple office locations
-- Business hours and information
-- FAQ section
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **React 18** with TypeScript
-- **Tailwind CSS** for styling
-- **React Router** for navigation
-- **Custom Image Component** with fallback system
-- **Responsive Design** for all devices
-
-### Backend (Ready for Integration)
-- Node.js with Express
-- PostgreSQL database
-- TypeORM for database operations
-- Redis for caching
-- JWT authentication
-
-### Development Tools
-- **TypeScript** for type safety
-- **ESLint** for code quality
-- **Prettier** for code formatting
-- **Git** for version control
-
-## 📈 Performance Features
-
-- **Optimized Images** with lazy loading
-- **Code Splitting** for faster initial load
-- **Responsive Design** for all screen sizes
-- **SEO Optimized** structure
-- **Fast Navigation** with React Router
-
-## 🔄 Data Generation
-
-The platform includes a sophisticated test data generator:
-
-```typescript
-// Generate custom datasets
-const dataService = DataService.getInstance();
-const data = dataService.generateFullDataset({
-  products: 5000,
-  customers: 1000,
-  orders: 2000
-});
-```
-
-## 🚀 Deployment
-
-### Development
 ```bash
-npm run dev
+npm run dev          # 启动所有服务
+npm run dev:web      # 只启动前端
+npm run dev:api      # 只启动后端
+npm run build        # 构建项目
+npm run lint         # 代码检查
+npm run reset        # 重置环境（遇到问题时使用）
 ```
 
-### Production Build
-```bash
-npm run build
-npm run start
-```
+## 🌟 核心功能
 
-### Docker (Coming Soon)
-```bash
-docker-compose up
-```
+- ✅ **多语言新闻系统** - RSS采集 + AI翻译
+- ✅ **用户管理系统** - 注册/登录/权限控制
+- ✅ **产品管理系统** - 商品展示/分类管理
+- ✅ **管理后台** - 数据管理/系统配置
+- ✅ **国际化支持** - 中英文切换
+- ✅ **响应式设计** - 支持移动端
 
-## 🤝 Contributing
+## 🛠️ 技术栈
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+- **前端**: Next.js + TypeScript + Tailwind CSS
+- **后端**: NestJS + TypeORM + SQLite
+- **数据库**: SQLite (单文件，无需安装)
 
-## 📄 License
+## 🆘 遇到问题？
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Unsplash** for providing high-quality product images
-- **Tailwind CSS** for the excellent utility-first CSS framework
-- **React Community** for the amazing ecosystem
-- **TypeScript Team** for type safety
+1. 查看 `项目启动指南.md` 详细说明
+2. 运行 `npm run reset` 重置环境
+3. 检查 Node.js 版本是否 >= 18
+4. 联系项目负责人
 
 ---
 
-**Built with ❤️ for the fashion export industry**
+**🎉 现在开始开发吧！**

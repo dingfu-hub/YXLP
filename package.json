@@ -25,7 +25,11 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
     "db:migrate": "turbo run db:migrate --filter=api",
-    "db:seed": "turbo run db:seed --filter=api"
+    "db:seed": "turbo run db:seed --filter=api",
+    "setup": "node scripts/setup-dev.js",
+    "quick-start": "echo 🚀 YXLP项目一键启动中... && npm install && npm run setup && npm run dev",
+    "reset": "npm run clean && rm -rf node_modules apps/*/node_modules && npm install",
+    "help": "echo 📖 查看项目启动指南.md获取详细说明"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
