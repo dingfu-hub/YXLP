@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAdmin } from '@/contexts/AdminContext'
@@ -14,8 +14,8 @@ interface SidebarProps {
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname()
-  const { permissions } = useAdmin()
-  const { t } = useTranslation()
+  const { permissions, isLoading } = useAdmin()
+  const { t } = useTranslation({ namespace: 'common', forceLanguage: 'zh' }) // 强制使用中文
   const [expandedItems, setExpandedItems] = useState<string[]>([])
 
   // 获取国际化的菜单标签
@@ -25,7 +25,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   }
 
   // 过滤有权限的菜单项
-  const filteredMenu = filterMenuByPermissions(SIDEBAR_MENU, permissions)
+  const filteredMenu = useMemo(() => {
+    return filterMenuByPermissions(SIDEBAR_MENU, permissions)
+  }, [permissions])
 
   // 自动展开包含当前路径的父菜单
   useEffect(() => {
@@ -57,8 +59,26 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   // 检查菜单项是否激活
   const isActive = (href: string) => {
+    // 精确匹配管理首页
     if (href === '/admin' && pathname === '/admin') return true
-    if (href !== '/admin' && pathname.startsWith(href)) return true
+
+    // 对于其他路径，只有完全匹配或者是直接子路径才算激活
+    if (href !== '/admin') {
+      // 完全匹配
+      if (pathname === href) return true
+
+      // 直接子路径匹配（避免多层嵌套都被激活）
+      // 例如：/admin/products 激活，但 /admin/products/categories 不激活 /admin/products
+      const pathSegments = pathname.split('/').filter(Boolean)
+      const hrefSegments = href.split('/').filter(Boolean)
+
+      // 如果当前路径比href路径多一层，且前面部分匹配，则激活
+      if (pathSegments.length === hrefSegments.length + 1) {
+        const hrefPath = '/' + hrefSegments.join('/')
+        return pathname.startsWith(hrefPath + '/')
+      }
+    }
+
     return false
   }
 
@@ -75,21 +95,20 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     return (
       <div key={item.id}>
         {hasChildren ? (
-          <button
-            onClick={() => {
+          <div
+            onClick={(e) => {
+              e.preventDefault()
               console.log('Parent menu clicked:', item.label, item.id)
               toggleExpanded(item.id)
             }}
-            className={`flex items-center w-full ${paddingClass} py-3 text-left text-sm font-medium rounded-lg transition-colors cursor-pointer ${
+            className={`flex items-center w-full ${paddingClass} py-3 text-sm font-medium rounded-lg transition-colors cursor-pointer ${
               active
                 ? 'bg-blue-100 text-blue-700'
                 : 'text-gray-700 hover:bg-gray-100'
             }`}
           >
-            <span className="flex-1 flex items-center">
-              <MenuIcon name={item.icon} className={`${iconSize} mr-3`} />
-              {getMenuLabel(item)}
-            </span>
+            <MenuIcon name={item.icon} className={`${iconSize} mr-3 flex-shrink-0`} />
+            <span className="truncate flex-1">{getMenuLabel(item)}</span>
             <svg
               className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`}
               fill="none"
@@ -98,7 +117,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-          </button>
+          </div>
         ) : (
           <Link
             href={item.href}
@@ -165,7 +184,13 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {/* 导航菜单 */}
         <nav className="flex-1 px-4 py-4 space-y-2 overflow-y-auto">
-          {filteredMenu.map(item => renderMenuItem(item))}
+          {isLoading ? (
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            </div>
+          ) : (
+            filteredMenu.map(item => renderMenuItem(item))
+          )}
         </nav>
 
         {/* 底部信息 */}

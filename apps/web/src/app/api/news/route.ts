@@ -50,21 +50,20 @@ export async function GET(request: NextRequest) {
     const endIndex = startIndex + limit
     const paginatedArticles = articles.slice(startIndex, endIndex)
 
-    // 转换为公共格式
+    // 转换为公共格式，保持字段名一致
     const publicArticles = paginatedArticles.map(article => ({
-      id: parseInt(article.id),
+      id: article.id,
       title: article.title,
       summary: article.summary,
       content: article.content,
       category: article.category,
       author: article.author || '未知作者',
-      publishDate: article.publishedAt 
-        ? article.publishedAt.toISOString().split('T')[0] 
-        : article.createdAt.toISOString().split('T')[0],
-      readCount: article.viewCount,
-      image: article.featuredImage || '/api/placeholder/600/400',
-      tags: article.keywords || [],
-      featured: article.viewCount > 500
+      publishedAt: article.publishedAt,
+      createdAt: article.createdAt,
+      featuredImage: article.featuredImage || '/api/placeholder/600/400',
+      viewCount: article.viewCount,
+      keywords: article.keywords || [],
+      slug: article.slug
     }))
 
     return NextResponse.json(

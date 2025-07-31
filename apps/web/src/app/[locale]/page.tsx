@@ -6,6 +6,7 @@ import { ChevronRightIcon, PlayIcon } from '@heroicons/react/24/outline'
 import LanguageSwitcher from '@/components/i18n/LanguageSwitcher'
 import { useTranslation } from '@/hooks/useTranslation'
 import { ProductImage, PlaceholderImage } from '@/components/ui/ImageWithFallback'
+import Header from '@/components/layout/Header'
 
 interface HomePageProps {
   params: {
@@ -22,21 +23,21 @@ export default function HomePage({ params }: HomePageProps) {
       title: t('hero.slide1.title', { defaultValue: "优质产品，卓越服务" }),
       subtitle: t('hero.slide1.subtitle', { defaultValue: "品质保证，信赖之选" }),
       description: t('hero.slide1.description', { defaultValue: "严格的质量控制体系，完善的售后服务网络，为客户提供最优质的产品和服务体验" }),
-      image: "/api/placeholder/1200/600",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=600&fit=crop&crop=center",
       cta: t('hero.slide1.cta', { defaultValue: "查看产品" })
     },
     {
       title: t('hero.slide2.title', { defaultValue: "引领未来商业创新" }),
       subtitle: t('hero.slide2.subtitle', { defaultValue: "YXLP - 您的数字化转型伙伴" }),
       description: t('hero.slide2.description', { defaultValue: "专注于为企业提供全方位的数字化解决方案，助力企业在数字时代实现跨越式发展" }),
-      image: "/api/placeholder/1200/600",
+      image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=1200&h=600&fit=crop&crop=center",
       cta: t('hero.slide2.cta', { defaultValue: "了解更多" })
     },
     {
       title: t('hero.slide3.title', { defaultValue: "全球合作，共创未来" }),
       subtitle: t('hero.slide3.subtitle', { defaultValue: "携手共进，合作共赢" }),
       description: t('hero.slide3.description', { defaultValue: "与全球优秀企业建立战略合作关系，共同开拓市场，实现互利共赢的发展目标" }),
-      image: "/api/placeholder/1200/600",
+      image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1200&h=600&fit=crop&crop=center",
       cta: t('hero.slide3.cta', { defaultValue: "成为合伙人" })
     }
   ]
@@ -50,37 +51,8 @@ export default function HomePage({ params }: HomePageProps) {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* 导航栏 */}
-      <nav className="bg-white shadow-lg fixed w-full z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href={`/${params.locale}`} className="flex items-center space-x-2">
-              <div className="h-10 w-10 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">Y</span>
-              </div>
-              <span className="font-heading font-bold text-2xl text-gray-900">YXLP</span>
-            </Link>
-
-            <div className="hidden md:flex items-center space-x-8">
-              <Link href={`/${params.locale}`} className="text-blue-600 font-medium">{t('nav.home', { defaultValue: "首页" })}</Link>
-              <Link href={`/${params.locale}/products`} className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.products', { defaultValue: "产品中心" })}</Link>
-              <Link href={`/${params.locale}/categories`} className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.categories', { defaultValue: "产品分类" })}</Link>
-              <Link href={`/${params.locale}/news`} className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.news', { defaultValue: "新闻资讯" })}</Link>
-              <Link href={`/${params.locale}/distributors`} className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.partners', { defaultValue: "合作伙伴" })}</Link>
-              <Link href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.about', { defaultValue: "关于我们" })}</Link>
-              <Link href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.contact', { defaultValue: "联系我们" })}</Link>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <LanguageSwitcher variant="compact" showFlag={true} showNativeName={false} />
-              <Link href={`/${params.locale}/login`} className="text-gray-600 hover:text-gray-900 transition-colors">{t('nav.login', { defaultValue: "登录" })}</Link>
-              <Link href={`/${params.locale}/register`} className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                {t('nav.register', { defaultValue: "免费注册" })}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      {/* Header */}
+      <Header />
 
       {/* 英雄区域 */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">

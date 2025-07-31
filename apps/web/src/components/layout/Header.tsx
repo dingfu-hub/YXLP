@@ -2,32 +2,50 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { Menu, X, Search, ShoppingCart, User, Globe, LogOut, Settings } from 'lucide-react'
 import { useAuthStore } from '@/stores/authStore'
+import { useTranslation } from '@/hooks/useTranslation'
+import LanguageSwitcher from '@/components/i18n/LanguageSwitcher'
 
 export default function Header() {
   const router = useRouter()
+  const pathname = usePathname()
+  const { t } = useTranslation()
   const { user, isAuthenticated, logout } = useAuthStore()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
 
+  // 获取当前语言
+  const getCurrentLanguage = () => {
+    const pathSegments = pathname.split('/')
+    const supportedLocales = ['zh', 'en', 'ja', 'ko', 'es', 'fr', 'de', 'it', 'pt', 'ru']
+    return pathSegments[1] && supportedLocales.includes(pathSegments[1]) ? pathSegments[1] : 'zh'
+  }
+
+  const currentLanguage = getCurrentLanguage()
+
   const navigation = [
-    { name: 'Products', href: '/products' },
-    { name: 'Categories', href: '/categories' },
-    { name: 'For Distributors', href: '/distributors' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: t('nav.home', { defaultValue: 'Home' }), href: `/${currentLanguage}` },
+    { name: t('nav.products', { defaultValue: 'Products' }), href: `/${currentLanguage}/products` },
+    { name: t('nav.news', { defaultValue: 'News' }), href: `/${currentLanguage}/news` },
+    { name: t('nav.partners', { defaultValue: 'Partners' }), href: `/${currentLanguage}/partners` },
+    { name: t('nav.about', { defaultValue: 'About Us' }), href: `/${currentLanguage}/about` },
+    { name: t('nav.contact', { defaultValue: 'Contact' }), href: `/${currentLanguage}/contact` },
   ]
 
-  const languages = [
-    { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'zh', name: '中文', flag: '🇨🇳' },
-    { code: 'es', name: 'Español', flag: '🇪🇸' },
-    { code: 'fr', name: 'Français', flag: '🇫🇷' },
-    { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
-  ]
+  // 检查当前路径是否匹配导航项
+  const isActiveNavItem = (href: string) => {
+    if (href.startsWith('#')) return false // 锚点链接不高亮
+
+    // 首页特殊处理
+    if (href === `/${currentLanguage}`) {
+      return pathname === `/${currentLanguage}` || pathname === `/${currentLanguage}/`
+    }
+
+    // 其他页面匹配
+    return pathname.startsWith(href)
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
@@ -35,7 +53,7 @@ export default function Header() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href={`/${currentLanguage}`} className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
                 <span className="text-white font-bold text-sm">Y</span>
               </div>
@@ -49,7 +67,11 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
+                className={`font-medium transition-colors duration-200 ${
+                  isActiveNavItem(item.href)
+                    ? 'text-blue-600 font-semibold'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
               >
                 {item.name}
               </Link>
@@ -64,30 +86,7 @@ export default function Header() {
             </button>
 
             {/* Language Selector */}
-            <div className="relative">
-              <button
-                onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                className="flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <Globe className="h-4 w-4 text-gray-600" />
-                <span className="text-sm font-medium text-gray-600">EN</span>
-              </button>
-              
-              {isLanguageOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border py-2 z-50">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      className="flex items-center space-x-3 w-full px-4 py-2 text-left hover:bg-gray-50 transition-colors"
-                      onClick={() => setIsLanguageOpen(false)}
-                    >
-                      <span className="text-lg">{lang.flag}</span>
-                      <span className="text-sm font-medium text-gray-700">{lang.name}</span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <LanguageSwitcher variant="compact" showFlag={true} showNativeName={false} />
 
             {/* Cart */}
             <button className="relative flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-100 transition-colors">
@@ -153,16 +152,16 @@ export default function Header() {
             ) : (
               <>
                 <Link
-                  href="/login"
+                  href={`/${currentLanguage}/login`}
                   className="hidden sm:inline-flex items-center px-4 py-2 text-gray-700 font-medium rounded-lg hover:bg-gray-100 transition-colors"
                 >
-                  Sign In
+                  {t('nav.login', { defaultValue: 'Sign In' })}
                 </Link>
                 <Link
-                  href="/register"
+                  href={`/${currentLanguage}/register`}
                   className="hidden sm:inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
                 >
-                  Get Started
+                  {t('nav.register', { defaultValue: 'Get Started' })}
                 </Link>
               </>
             )}
@@ -189,7 +188,11 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200 px-2"
+                  className={`font-medium transition-colors duration-200 px-2 ${
+                    isActiveNavItem(item.href)
+                      ? 'text-blue-600 font-semibold'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}

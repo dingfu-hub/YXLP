@@ -99,8 +99,8 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <AuthProvider>
-          <div className="relative flex min-h-screen flex-col">
-            <main className="flex-1">{children}</main>
+          <div className="relative flex flex-col">
+            <main>{children}</main>
           </div>
         </AuthProvider>
       </body>

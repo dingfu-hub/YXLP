@@ -64,7 +64,7 @@ async function parseRSSFeed(source: ProductionRSSSource): Promise<ArticleData[]>
       sourceId: source.id,
       language: source.language,
       category: source.category,
-      featuredImage: `https://example.com/images/${articleId}.jpg`,
+      featuredImage: '/api/placeholder/600/400',
       author: `${source.name} Editor`
     })
   }

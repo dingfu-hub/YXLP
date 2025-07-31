@@ -1,15 +1,14 @@
 // 商品分类
-export type ProductCategory = 
+export type ProductCategory =
   | 'clothing'      // 服装
   | 'accessories'   // 配饰
   | 'shoes'         // 鞋类
   | 'bags'          // 包包
-  | 'jewelry'       // 珠宝
-  | 'beauty'        // 美妆
-  | 'home'          // 家居
-  | 'electronics'   // 电子产品
-  | 'sports'        // 运动用品
-  | 'books'         // 图书
+  | 'underwear'     // 内衣
+  | 'sportswear'    // 运动服装
+  | 'formal'        // 正装
+  | 'casual'        // 休闲装
+  | 'outerwear'     // 外套
   | 'other'         // 其他
 
 // 商品状态
@@ -219,12 +218,11 @@ export const productCategories: ProductCategoryInfo[] = [
   { id: 'accessories', name: '配饰', description: '时尚配饰', icon: '👜' },
   { id: 'shoes', name: '鞋类', description: '各种鞋类产品', icon: '👠' },
   { id: 'bags', name: '包包', description: '手提包、背包等', icon: '🎒' },
-  { id: 'jewelry', name: '珠宝', description: '珠宝首饰', icon: '💎' },
-  { id: 'beauty', name: '美妆', description: '化妆品护肤品', icon: '💄' },
-  { id: 'home', name: '家居', description: '家居用品', icon: '🏠' },
-  { id: 'electronics', name: '电子产品', description: '电子设备', icon: '📱' },
-  { id: 'sports', name: '运动用品', description: '运动健身用品', icon: '⚽' },
-  { id: 'books', name: '图书', description: '各类图书', icon: '📚' },
+  { id: 'underwear', name: '内衣', description: '内衣内裤等贴身衣物', icon: '👙' },
+  { id: 'sportswear', name: '运动服装', description: '运动服、健身服等', icon: '🏃' },
+  { id: 'formal', name: '正装', description: '西装、礼服等正式服装', icon: '🤵' },
+  { id: 'casual', name: '休闲装', description: '休闲服装、日常穿着', icon: '👔' },
+  { id: 'outerwear', name: '外套', description: '夹克、大衣、羽绒服等', icon: '🧥' },
   { id: 'other', name: '其他', description: '其他商品', icon: '📦' }
 ]
 

@@ -23,11 +23,11 @@ let products: Product[] = [
     currency: 'CNY',
     stock: 150,
     minStock: 20,
-    featuredImage: '/api/placeholder/400/400',
+    featuredImage: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop&crop=center',
     images: [
-      '/api/placeholder/400/400',
-      '/api/placeholder/400/400',
-      '/api/placeholder/400/400'
+      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=400&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=400&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&h=400&fit=crop&crop=center'
     ],
     slug: 'classic-white-tshirt',
     metaTitle: '经典白色T恤 - 100%纯棉舒适透气',
@@ -66,10 +66,10 @@ let products: Product[] = [
     currency: 'CNY',
     stock: 80,
     minStock: 15,
-    featuredImage: '/api/placeholder/400/400',
+    featuredImage: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=400&fit=crop&crop=center',
     images: [
-      '/api/placeholder/400/400',
-      '/api/placeholder/400/400'
+      'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400&h=400&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=400&h=400&fit=crop&crop=center'
     ],
     slug: 'fashion-jeans',
     metaTitle: '时尚牛仔裤 - 修身剪裁经典蓝色',
@@ -108,12 +108,12 @@ let products: Product[] = [
     currency: 'CNY',
     stock: 25,
     minStock: 5,
-    featuredImage: '/api/placeholder/400/400',
+    featuredImage: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center',
     images: [
-      '/api/placeholder/400/400',
-      '/api/placeholder/400/400',
-      '/api/placeholder/400/400',
-      '/api/placeholder/400/400'
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&h=400&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1590736969955-71cc94901144?w=400&h=400&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=400&fit=crop&crop=center'
     ],
     slug: 'leather-handbag',
     metaTitle: '真皮手提包 - 意大利进口优雅设计',
@@ -152,10 +152,10 @@ let products: Product[] = [
     currency: 'CNY',
     stock: 120,
     minStock: 30,
-    featuredImage: '/api/placeholder/400/400',
+    featuredImage: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop&crop=center',
     images: [
-      '/api/placeholder/400/400',
-      '/api/placeholder/400/400'
+      'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&h=400&fit=crop&crop=center'
     ],
     slug: 'sport-running-shoes',
     metaTitle: '运动跑鞋 - 专业缓震轻量设计',
@@ -181,34 +181,34 @@ let products: Product[] = [
   },
   {
     id: '5',
-    name: '智能手表',
-    description: '多功能智能手表，支持健康监测、运动追踪、消息提醒等功能。超长续航，防水设计。',
-    summary: '多功能智能手表，健康监测',
-    category: 'electronics',
+    name: '时尚连衣裙',
+    description: '优雅时尚连衣裙，采用高品质面料，修身剪裁，展现女性优雅气质。适合商务、约会等多种场合。',
+    summary: '优雅时尚连衣裙，修身剪裁',
+    category: 'clothing',
     status: 'published',
-    brand: 'TechWatch',
-    model: 'TW-S005',
-    sku: 'TW-S005-BLACK',
-    price: 1999,
-    originalPrice: 2499,
+    brand: 'ElegantStyle',
+    model: 'ES-D005',
+    sku: 'ES-D005-BLACK',
+    price: 399,
+    originalPrice: 599,
     currency: 'CNY',
     stock: 45,
     minStock: 10,
-    featuredImage: '/api/placeholder/400/400',
+    featuredImage: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=400&fit=crop&crop=center',
     images: [
-      '/api/placeholder/400/400',
-      '/api/placeholder/400/400',
-      '/api/placeholder/400/400'
+      'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=400&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=400&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&h=400&fit=crop&crop=center'
     ],
-    slug: 'smart-watch',
-    metaTitle: '智能手表 - 多功能健康监测',
-    metaDescription: '智能手表，健康监测，运动追踪，消息提醒，超长续航，防水设计',
-    keywords: ['智能手表', '健康监测', '运动追踪', '防水', '续航'],
-    weight: 150,
+    slug: 'elegant-dress',
+    metaTitle: '时尚连衣裙 - 优雅修身剪裁',
+    metaDescription: '时尚连衣裙，优雅修身，高品质面料，适合商务约会等多种场合',
+    keywords: ['连衣裙', '时尚', '优雅', '修身', '商务'],
+    weight: 300,
     dimensions: {
-      length: 5,
-      width: 4,
-      height: 1
+      length: 120,
+      width: 60,
+      height: 2
     },
     publishedAt: new Date('2024-02-05'),
     author: 'admin',
@@ -217,7 +217,7 @@ let products: Product[] = [
     favoriteCount: 156,
     rating: 4.4,
     reviewCount: 45,
-    tags: ['智能', '科技', '健康'],
+    tags: ['时尚', '优雅', '女装'],
     featured: true,
     createdAt: new Date('2024-02-01'),
     updatedAt: new Date('2024-02-05')

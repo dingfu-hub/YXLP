@@ -12,7 +12,7 @@ import { useTranslation } from '@/hooks/useTranslation'
 
 export default function NewsListPage() {
   const { user } = useAdmin()
-  const { t } = useTranslation()
+  const { t, language } = useTranslation({ namespace: 'common' }) // 响应语言切换
 
   // 状态选项
   const statusOptions = [
@@ -396,7 +396,11 @@ export default function NewsListPage() {
             <span className="text-sm text-gray-600">{t('admin.news.displayLanguage')}:</span>
             <LanguageSelector
               selectedLanguage={selectedLanguage}
-              onLanguageChange={setSelectedLanguage}
+              onLanguageChange={(lang) => {
+                setSelectedLanguage(lang)
+                // 重新获取新闻数据以应用语言过滤
+                fetchNews()
+              }}
               size="sm"
             />
           </div>

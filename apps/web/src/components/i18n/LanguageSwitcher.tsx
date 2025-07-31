@@ -48,7 +48,7 @@ export default function LanguageSwitcher({
 
     // 移除现有的语言前缀（如果有）
     const pathSegments = currentPath.split('/').filter(Boolean)
-    const supportedLocales = ['zh', 'en', 'ja', 'ko', 'es', 'fr', 'de', 'it', 'pt', 'ru']
+    const supportedLocales = availableLanguages.map(lang => lang.code)
 
     if (pathSegments.length > 0 && supportedLocales.includes(pathSegments[0])) {
       // 移除第一个语言段

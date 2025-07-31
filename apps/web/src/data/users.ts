@@ -41,11 +41,18 @@ export const users: User[] = [
     },
     role: UserRole.SUPER_ADMIN,
     permissions: [
-      'users:read', 'users:write', 'users:delete',
-      'products:read', 'products:write', 'products:delete',
-      'orders:read', 'orders:write', 'orders:delete',
-      'analytics:read', 'analytics:write',
-      'system:read', 'system:write', 'system:config'
+      // 商品权限
+      'product:view', 'product:create', 'product:update', 'product:delete',
+      // 订单权限
+      'order:view', 'order:update', 'order:delete',
+      // 用户权限
+      'user:view', 'user:update', 'user:delete', 'user:management',
+      // 新闻权限
+      'news:view', 'news:create', 'news:update', 'news:delete',
+      // 数据分析权限
+      'analytics:view', 'analytics:export',
+      // 系统权限
+      'system:settings'
     ],
     preferences: {
       language: 'zh-CN',
