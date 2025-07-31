@@ -131,6 +131,10 @@ logs
 *.sqlite3
 *.db
 
+# 但允许示例数据库文件
+!apps/api/data/yxlp.db
+!apps/web/data/*.json
+
 # Uploads
 uploads/
 public/uploads/

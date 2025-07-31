@@ -116,6 +116,28 @@ function checkPorts() {
   })
 }
 
+// 初始化数据库
+function initializeDatabase() {
+  console.log('\n🗄️ 检查数据库...')
+
+  const dbPath = 'apps/api/data/yxlp.db'
+
+  if (!fs.existsSync(dbPath)) {
+    console.log('📝 数据库不存在，将在首次启动时自动创建')
+    console.log('💡 数据库表结构和初始数据会自动生成')
+  } else {
+    const stats = fs.statSync(dbPath)
+    console.log(`✅ 数据库已存在 (${Math.round(stats.size / 1024)}KB)`)
+  }
+
+  // 确保数据目录存在
+  const dataDir = path.dirname(dbPath)
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true })
+    console.log('📁 创建数据目录')
+  }
+}
+
 // 主函数
 function main() {
   try {
@@ -127,6 +149,9 @@ function main() {
     
     console.log('\n🎉 开发环境设置完成！')
     console.log('================================')
+    // 初始化数据库（如果不存在）
+    initializeDatabase()
+
     console.log('📝 接下来的步骤:')
     console.log('1. 启动开发服务器: npm run dev')
     console.log('2. 访问前端应用: http://localhost:3000')
@@ -134,8 +159,8 @@ function main() {
     console.log('4. 访问API文档: http://localhost:3001/api/docs')
     console.log('\n💡 提示:')
     console.log('- 默认管理员账号: admin / admin123')
-    console.log('- 数据库文件位置: apps/web/data/')
-    console.log('- 如遇问题请查看 QUICK_START_GUIDE.md')
+    console.log('- 数据库文件位置: apps/api/data/yxlp.db')
+    console.log('- 如遇问题请查看 项目启动指南.md')
     
   } catch (error) {
     console.error('❌ 设置过程中出现错误:', error.message)
